@@ -1,0 +1,87 @@
+/* === MAIMODORUN BUTTON AT TOP RIGHT OF FORM === */
+.ocean-ui-comments-commentform-maimodorun-button-wrap {
+  position: relative;
+}
+
+.maimodorun-button-in-top-right-of-form {
+  position: absolute;
+  top: 7px;
+  right: 8px;
+
+  width: 19px;
+  height: 19px;
+}
+
+/* === MAIMODORUN BUTTON IN FORM === */
+
+.goog-toolbar-button-inner-box-maimodorun {
+  color: #3498db;
+}
+
+.maimodorun-button {
+  width: 16px;
+  height: 16px;
+  padding: 3px 6px;
+  margin: 0;
+}
+
+.goog-toolbar-button-right-border {
+  border-right: 1px solid #e3e7e8;
+}
+
+/* === SAVED SIGN IN EDITOR FOOTER === */
+.maimodorun-saved-sign {
+  display: inline-block;
+  margin: 16px 0 16px 28px;
+  color: #888888;
+  font-size: 14px;
+}
+
+/* === SAVED ERROR SIGN IN EDIOR FOOTER === */
+.maimodorun-saved-sign-failed span {
+  margin: 0 0 0 30px;
+}
+
+.maimodorun-saved-sign-img {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+}
+
+[data-maimodorun-tooltip] {
+  position: relative;
+  z-index: 2;
+}
+
+[data-maimodorun-tooltip]:before {
+  position: absolute;
+  bottom: 120%;
+  left: 40%;
+  margin-bottom: 5px;
+  margin-left: -80px;
+  padding: 7px 15px;
+  width: 360px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  background-color: #000;
+  color: #fff;
+  content: attr(data-maimodorun-tooltip);
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.2;
+}
+
+[data-maimodorun-tooltip]:after {
+  position: absolute;
+  bottom: 120%;
+  left: 40%;
+  margin-left: -5px;
+  width: 0;
+  border-top: 5px solid #000;
+  border-right: 5px solid transparent;
+  border-left: 5px solid transparent;
+  content: " ";
+  font-size: 0;
+  line-height: 0;
+}

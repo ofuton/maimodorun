@@ -1,0 +1,60 @@
+{
+    "name": "maimodorun",
+    "version": "0.1.8",
+    "description": "maimodorun: Recovery Tool for Forms on kintone",
+    "manifest_version": 2,
+    "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
+    "icons": {
+      "16": "img/icon16.png",
+      "48": "img/icon48.png",
+      "128": "img/icon128.png"
+    },
+    "background": {
+        "scripts": [
+            "js/storage.js",
+            "js/background.js"
+        ],
+        "persistent": false
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "https://*.cybozu.com/k/*",
+                "https://*.s.cybozu.com/k/*",
+                "https://*.cybozu-dev.com/k/*",
+                "https://*.s.cybozu-dev.com/k/*"
+            ],
+            "js": [
+                "lib/jquery-3.2.1.min.js",
+                "lib/underscore-min.js",
+                "js/maimodorun.js"
+            ],
+            "css": [
+              "css/maimodorun.css"
+            ]
+        }
+    ],
+    "browser_action": {
+        "default_icon": {
+            "19": "img/icon19.png"
+        },
+        "default_title": "maimodorun",
+        "default_popup": "html/popup.html"
+    },
+    "permissions": [
+        "tabs",
+        "storage",
+        "https://*.cybozu.com/k/*",
+        "https://*.s.cybozu.com/k/*",
+        "https://*.cybozu-dev.com/k/*",
+        "https://*.s.cybozu-dev.com/k/*"
+    ],
+    "web_accessible_resources": [
+        "img/icon16.png",
+        "img/icon19.png",
+        "img/icon48.png",
+        "img/icon128.png",
+        "img/error_mark.png",
+        "js/inject.js"
+    ]
+}
