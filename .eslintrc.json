@@ -3,9 +3,7 @@
         "browser": true
     },
     "extends": "eslint:recommended",
-    "parserOptions": {
-        "ecmaVersion": 6
-    },
+    "parser": "babel-eslint",
     "rules": {
         "indent": [
             "error",
