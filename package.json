@@ -32,5 +32,8 @@
   "bugs": {
     "url": "https://github.com/ofuton/maimodorun/issues"
   },
-  "homepage": "https://github.com/ofuton/maimodorun#readme"
+  "homepage": "https://github.com/ofuton/maimodorun#readme",
+  "scripts": {
+    "eslint": "./node_modules/.bin/eslint ./extension/js/*.js"
+  }
 }
