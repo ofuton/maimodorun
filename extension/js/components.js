@@ -1,0 +1,10 @@
+const threadCommentFormWrap = '.ocean-space-thread-body + .ocean-ui-comments-commentform';
+const threadCommentForm = '.ocean-space-thread-body + .ocean-ui-comments-commentform .ocean-ui-editor-field';
+const threadCommentSubmit = '.ocean-space-thread-body + .ocean-ui-comments-commentform .ocean-ui-comments-commentform-submit';
+const threadCommentCancel = '.ocean-space-thread-body + .ocean-ui-comments-commentform .ocean-ui-comments-commentform-cancel';
+const threadCommentToolBar = '.ocean-space-thread-body + .ocean-ui-comments-commentform .goog-toolbar';
+const threadCommentTextArea = '.ocean-ui-comments-commentform-textarea';
+const threadCommentInlineBlock = '.goog-inline-block';
+const threadCommentRemoveFormatIcon = '.tr-removeFormat';
+const threadCommentInTopRightOfFormMaimodorunBtn = '.ocean-ui-comments-commentform-maimodorun-button-wrap';
+const coverImage = '.gaia-argoui-space-spacelayout-cover';
