@@ -7,6 +7,7 @@ gulp.task('css', () => {
     return gulp.src('extension/css/*.css')
         .pipe( sourcemaps.init() )
         .pipe( postcss([
+            require('postcss-import'),
             require('postcss-preset-env'),
             require('autoprefixer'),
             require('cssnano')
