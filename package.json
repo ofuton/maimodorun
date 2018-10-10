@@ -8,7 +8,8 @@
     "cssnano": "^4.1.4",
     "gulp": "^4.0.0",
     "gulp-postcss": "^8.0.0",
-    "gulp-sourcemaps": "^2.6.4"
+    "gulp-sourcemaps": "^2.6.4",
+    "postcss-preset-env": "^6.0.10"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
