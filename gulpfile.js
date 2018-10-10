@@ -10,6 +10,7 @@ gulp.task('css', () => {
             require('postcss-import'),
             require('postcss-preset-env'),
             require('postcss-apply'),
+            require('postcss-neat'),
             require('cssnano')
         ]) )
         .pipe( sourcemaps.write('.') )
