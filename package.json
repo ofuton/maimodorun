@@ -5,6 +5,7 @@
   "main": "extensions/js/maimodorun.js",
   "devDependencies": {
     "autoprefixer": "^9.1.5",
+    "cssnano": "^4.1.4",
     "gulp": "^4.0.0",
     "gulp-postcss": "^8.0.0",
     "gulp-sourcemaps": "^2.6.4"
