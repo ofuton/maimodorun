@@ -1,10 +1,10 @@
 const gulp = require('gulp');
 
 gulp.task('watch', () => {
-    gulp.watch('./extension/**/*.css', gulp.task('css'));
+    gulp.watch('./extension/**/*.css', gulp.task('style'));
 });
 
-gulp.task('css', () => {
+gulp.task('style', () => {
     const postcss = require('gulp-postcss');
     const sourcemaps = require('gulp-sourcemaps');
 
