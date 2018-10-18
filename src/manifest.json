@@ -11,8 +11,8 @@
     },
     "background": {
         "scripts": [
-            "./assets/js/storage.js",
-            "./assets/js/background.js"
+            "./assets/js/storage.min.js",
+            "./assets/js/background.min.js"
         ],
         "persistent": false
     },
@@ -27,13 +27,13 @@
             "js": [
                 "./assets/vendors/jquery-3.2.1.min.js",
                 "./assets/vendors/underscore-min.js",
-                "./assets/js/components.js",
-                "./assets/js/utils.js",
-                "./assets/js/views.js",
-                "./assets/js/maimodorun.js"
+                "./assets/js/components.min.js",
+                "./assets/js/utils.min.js",
+                "./assets/js/views.min.js",
+                "./assets/js/maimodorun.min.js"
             ],
             "css": [
-              "./assets/css/maimodorun.css"
+              "./assets/css/maimodorun.min.css"
             ]
         }
     ],
@@ -53,11 +53,11 @@
         "https://*.s.cybozu-dev.com/k/*"
     ],
     "web_accessible_resources": [
-        "./assets/images/icon16.png",
-        "./assets/images/icon19.png",
-        "./assets/images/icon48.png",
-        "./assets/images/icon128.png",
-        "./assets/images/error_mark.png",
-        "./assets/js/inject.js"
+        "assets/images/icon16.png",
+        "assets/images/icon19.png",
+        "assets/images/icon48.png",
+        "assets/images/icon128.png",
+        "assets/images/error_mark.png",
+        "assets/js/inject.min.js"
     ]
 }
