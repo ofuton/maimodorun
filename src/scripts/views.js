@@ -17,11 +17,11 @@ const insertMaimodorunBtnInTopRightOfForm = () => {
 const createMaimodorunBtnElInTopRightOfForm = () => {
     const template = [
         "<div class=\"<%= btnClass %>\">",
-            "<img src=\"<%= src %>\" class=\"maimodorun-button-in-top-right-of-form\">",
+            "<images src=\"<%= src %>\" class=\"maimodorun-button-in-top-right-of-form\">",
         '</div>',
     ].join('');
     const compiledTemplate = _.template(template);
-    return compiledTemplate({ btnClass: threadCommentInTopRightOfFormMaimodorunBtn.slice(1), src: chrome.extension.getURL('img/icon48.png') });
+    return compiledTemplate({ btnClass: threadCommentInTopRightOfFormMaimodorunBtn.slice(1), src: chrome.extension.getURL('images/icon48.png') });
 };
 
 const removeMaimodorunBtnInTopRightOfForm = () => {
@@ -59,14 +59,14 @@ const createMaimodorunBtnEl = () => {
           '<div class="goog-inline-block goog-toolbar-button-outer-box">',
             '<div class="goog-inline-block goog-toolbar-button-inner-box goog-toolbar-button-inner-box-maimodorun">',
               '<div class="ocean-ui-editor-toolbar-maimodorun-button">',
-                "<img src=\"<%= iconImgSrc %>\" class=\"maimodorun-button\">",
+                "<images src=\"<%= iconImgSrc %>\" class=\"maimodorun-button\">",
               '</div>',
             '</div>',
           '</div>',
         '</div>',
     ].join('');
     const compiledTemplate = _.template(template);
-    return compiledTemplate({ iconImgSrc: chrome.extension.getURL('img/icon48.png') });
+    return compiledTemplate({ iconImgSrc: chrome.extension.getURL('images/icon48.png') });
 };
 
 const createMaimodorunBtnLeftBorder = () => {
@@ -85,14 +85,14 @@ const createAutoSavedSign = () => {
 const createFailedAutoSavedSign = (message) => {
     const template = [
         '<div class="maimodorun-saved-sign maimodorun-saved-sign-failed">',
-            "<img class=\"maimodorun-saved-sign-img\" src=\"<%= imgSrc %>\">",
+            "<images class=\"maimodorun-saved-sign-images\" src=\"<%= imgSrc %>\">",
             "<span data-maimodorun-tooltip=\"<%= message %>\">",
                 '保存に失敗しました',
             '</span>',
         '</div>',
     ].join('');
     const compiledTemplate = _.template(template);
-    return compiledTemplate({ imgSrc: chrome.extension.getURL('img/error_mark.png'), message: message });
+    return compiledTemplate({ imgSrc: chrome.extension.getURL('images/error_mark.png'), message: message });
 };
 
 const insertMaimodorunBtn = async () => {
@@ -123,7 +123,7 @@ const insertFailedAutoSavedSign = (message) => {
 };
 
 const hasAnyContents = (element) => {
-    if (element.is('img') || element.text().trim() !== "") return true;
+    if (element.is('images') || element.text().trim() !== "") return true;
 
     let flag = false;
     element.children().each((index, child) => {

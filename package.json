@@ -15,8 +15,9 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "gulp:build": "./node_modules/.bin/gulp build",
     "gulp:watch": "./node_modules/.bin/gulp watch",
-    "gulp:style": "./node_modules/.bin/gulp style"
+    "gulp:styles": "./node_modules/.bin/gulp styles"
   },
   "repository": {
     "type": "git",
