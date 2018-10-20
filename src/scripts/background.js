@@ -88,9 +88,9 @@ const newTabWithRecovery = async (request, storage, sendResponse) => {
     const valueFromLocalStorage = await storage.getItem(request.url);
     const tab = await new Promise((resolve) => chrome.tabs.create({url: request.url}, (tab) => resolve(tab)));
 
-    await executeScriptIntoTab(tab.id, { file: './assets/vendors/jquery-3.2.1.min.js' });
+    await executeScriptIntoTab(tab.id, { file: 'assets/vendors/jquery-3.2.1.min.js' });
     await executeScriptIntoTab(tab.id, { code: 'const valueFromNewTabWithRecovery = \'' + valueFromLocalStorage.contents + '\''});
-    await executeScriptIntoTab(tab.id, { file: './assets/js/inject.min.js' });
+    await executeScriptIntoTab(tab.id, { file: 'assets/js/inject.min.js' });
 };
 
 
