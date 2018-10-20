@@ -105,4 +105,4 @@ const Storage = class {
     removeItem(key) {
         return this._run('delete', key, 'readwrite');
     }
-}
+};

@@ -2,10 +2,14 @@
   "name": "maimodorun",
   "version": "0.1.8",
   "description": "Maimodorun is a chrome extension to recover unsaved texts on Rich Text Editor(RTE) for kintone.",
-  "main": "extensions/js/maimodorun.js",
+  "main": "./dist/js/maimodorun.js",
   "devDependencies": {
+    "babel-eslint": "^9.0.0",
     "cssnano": "^4.1.4",
     "del": "^3.0.0",
+    "eslint": "^5.6.0",
+    "eslint-config-prettier": "^3.1.0",
+    "eslint-plugin-prettier": "^2.7.0",
     "gulp": "^4.0.0",
     "gulp-imagemin": "^4.1.0",
     "gulp-minify": "^3.1.0",
@@ -16,10 +20,13 @@
     "postcss-apply": "^0.11.0",
     "postcss-import": "^12.0.0",
     "postcss-neat": "^2.5.3",
-    "postcss-preset-env": "^6.0.10"
+    "postcss-preset-env": "^6.0.10",
+    "prettier": "^1.14.3"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "eslint": "./node_modules/.bin/eslint ./src/scripts/*.js",
+    "eslint:fix": "./node_modules/.bin/eslint --fix ./src/scripts/*.js",
     "gulp:watch": "./node_modules/.bin/gulp watch",
     "gulp:build": "./node_modules/.bin/gulp build",
     "gulp:clean": "./node_modules/.bin/gulp clean"
@@ -46,6 +53,5 @@
   "bugs": {
     "url": "https://github.com/ofuton/maimodorun/issues"
   },
-  "homepage": "https://github.com/ofuton/maimodorun#readme",
-  "dependencies": {}
+  "homepage": "https://github.com/ofuton/maimodorun#readme"
 }
