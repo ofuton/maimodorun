@@ -82,6 +82,13 @@ gulp.task('clean:zip', () => {
     return del('./archive.zip', { force:true });
 });
 
+gulp.task('clean:all',
+    gulp.parallel(
+        'clean:dist',
+        'clean:zip'
+    )
+);
+
 gulp.task('zip', () => {
     const zip = require('gulp-zip');
     return gulp.src('./dist/**/*', { base: '.' })
