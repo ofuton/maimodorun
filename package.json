@@ -2,20 +2,34 @@
   "name": "maimodorun",
   "version": "0.1.8",
   "description": "Maimodorun is a chrome extension to recover unsaved texts on Rich Text Editor(RTE) for kintone.",
-  "main": "extensions/js/maimodorun.js",
-  "dependencies": {
-    "eslint": "^5.6.0"
-  },
+  "main": "./dist/js/maimodorun.js",
   "devDependencies": {
     "babel-eslint": "^9.0.0",
-    "eslint-config-prettier": "3.1.0",
-    "eslint-plugin-prettier": "2.7.0",
-    "prettier": "1.14.3"
+    "cssnano": "^4.1.4",
+    "del": "^3.0.0",
+    "eslint": "^5.6.0",
+    "eslint-config-prettier": "^3.1.0",
+    "eslint-plugin-prettier": "^2.7.0",
+    "gulp": "^4.0.0",
+    "gulp-imagemin": "^4.1.0",
+    "gulp-minify": "^3.1.0",
+    "gulp-postcss": "^8.0.0",
+    "gulp-rename": "^1.4.0",
+    "gulp-sourcemaps": "^2.6.4",
+    "gulp-zip": "^4.2.0",
+    "postcss-apply": "^0.11.0",
+    "postcss-import": "^12.0.0",
+    "postcss-neat": "^2.5.3",
+    "postcss-preset-env": "^6.0.10",
+    "prettier": "^1.14.3"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "eslint": "./node_modules/.bin/eslint ./extension/js/*.js",
-    "eslint:fix": "./node_modules/.bin/eslint --fix ./extension/js/*.js"
+    "eslint": "./node_modules/.bin/eslint ./src/scripts/*.js",
+    "eslint:fix": "./node_modules/.bin/eslint --fix ./src/scripts/*.js",
+    "gulp:watch": "./node_modules/.bin/gulp watch",
+    "gulp:build": "./node_modules/.bin/gulp build",
+    "gulp:clean": "./node_modules/.bin/gulp clean"
   },
   "repository": {
     "type": "git",

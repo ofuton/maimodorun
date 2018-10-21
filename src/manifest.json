@@ -5,14 +5,14 @@
     "manifest_version": 2,
     "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
     "icons": {
-      "16": "img/icon16.png",
-      "48": "img/icon48.png",
-      "128": "img/icon128.png"
+      "16": "./assets/images/icon16.png",
+      "48": "./assets/images/icon48.png",
+      "128": "./assets/images/icon128.png"
     },
     "background": {
         "scripts": [
-            "js/storage.js",
-            "js/background.js"
+            "./assets/js/storage.min.js",
+            "./assets/js/background.min.js"
         ],
         "persistent": false
     },
@@ -25,24 +25,24 @@
                 "https://*.s.cybozu-dev.com/k/*"
             ],
             "js": [
-                "lib/jquery-3.2.1.min.js",
-                "lib/underscore-min.js",
-                "js/components.js",
-                "js/utils.js",
-                "js/views.js",
-                "js/maimodorun.js"
+                "./assets/vendors/jquery-3.2.1.min.js",
+                "./assets/vendors/underscore-min.js",
+                "./assets/js/components.min.js",
+                "./assets/js/utils.min.js",
+                "./assets/js/views.min.js",
+                "./assets/js/maimodorun.min.js"
             ],
             "css": [
-              "css/maimodorun.css"
+              "./assets/css/maimodorun.min.css"
             ]
         }
     ],
     "browser_action": {
         "default_icon": {
-            "19": "img/icon19.png"
+            "19": "./assets/images/icon19.png"
         },
         "default_title": "maimodorun",
-        "default_popup": "html/popup.html"
+        "default_popup": "./assets/html/popup.html"
     },
     "permissions": [
         "tabs",
@@ -53,11 +53,11 @@
         "https://*.s.cybozu-dev.com/k/*"
     ],
     "web_accessible_resources": [
-        "img/icon16.png",
-        "img/icon19.png",
-        "img/icon48.png",
-        "img/icon128.png",
-        "img/error_mark.png",
-        "js/inject.js"
+        "assets/images/icon16.png",
+        "assets/images/icon19.png",
+        "assets/images/icon48.png",
+        "assets/images/icon128.png",
+        "assets/images/error_mark.png",
+        "assets/js/inject.min.js"
     ]
 }

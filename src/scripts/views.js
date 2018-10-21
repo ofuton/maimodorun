@@ -21,7 +21,7 @@ const createMaimodorunBtnElInTopRightOfForm = () => {
         '</div>',
     ].join('');
     const compiledTemplate = _.template(template);
-    return compiledTemplate({ btnClass: threadCommentInTopRightOfFormMaimodorunBtn.slice(1), src: chrome.extension.getURL('img/icon48.png') });
+    return compiledTemplate({ btnClass: threadCommentInTopRightOfFormMaimodorunBtn.slice(1), src: chrome.extension.getURL('./assets/images/icon48.png') });
 };
 
 const removeMaimodorunBtnInTopRightOfForm = () => {
@@ -66,7 +66,7 @@ const createMaimodorunBtnEl = () => {
         '</div>',
     ].join('');
     const compiledTemplate = _.template(template);
-    return compiledTemplate({ iconImgSrc: chrome.extension.getURL('img/icon48.png') });
+    return compiledTemplate({ iconImgSrc: chrome.extension.getURL('./assets/images/icon48.png') });
 };
 
 const createMaimodorunBtnLeftBorder = () => {
@@ -92,7 +92,7 @@ const createFailedAutoSavedSign = (message) => {
         '</div>',
     ].join('');
     const compiledTemplate = _.template(template);
-    return compiledTemplate({ imgSrc: chrome.extension.getURL('img/error_mark.png'), message: message });
+    return compiledTemplate({ imgSrc: chrome.extension.getURL('./assets/images/error_mark.png'), message: message });
 };
 
 const insertMaimodorunBtn = async () => {
