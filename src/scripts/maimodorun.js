@@ -68,7 +68,6 @@ $(window).on('load hashchange', () => {
             const payload = await dispatchSave();
             await setValueIntoStorage(payload);
             removeAutoSavedSign();
-            checkCommentFormProcess();
         } catch(error) {
             handleAutoSaveError(error);
         }
@@ -76,14 +75,12 @@ $(window).on('load hashchange', () => {
 
     $(document).on('mousedown', threadCommentCancel, () => {
         removeAutoSavedSign;
-        checkCommentFormProcess();
     });
 
     $(document).on('focus', threadCommentTextArea, async (event) => {
         // フォーム要素が構築されるまでちょっと待つ
         await sleep(10);
 
-        removeMaimodorunBtnInTopRightOfForm();
         insertMaimodorunBtn();
         formObserver.observe($(threadCommentForm)[0], {
             childList: true,
@@ -97,6 +94,4 @@ $(window).on('load hashchange', () => {
         const value = await getValueFromStorage();
         $(threadCommentForm).html(value.contents);
     });
-
-    checkCommentFormProcess();
 });
