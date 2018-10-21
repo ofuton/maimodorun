@@ -79,7 +79,7 @@ gulp.task('clean', () => {
 
 gulp.task('zip', () => {
     const zip = require('gulp-zip');
-    return gulp.src('./dist')
+    return gulp.src('./dist/**/*', {base: '.'})
         .pipe(zip('archive.zip'))
         .pipe(gulp.dest('./'));
 });
