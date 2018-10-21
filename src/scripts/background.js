@@ -5,6 +5,7 @@ const executeScriptIntoTab = (tabId, obj) => {
 const newStorage = () => {
     return new Storage({
         db: 'maimodorun',
+        version: 2,
         store: {
             name: 'formText',
             keyPath: 'url',
