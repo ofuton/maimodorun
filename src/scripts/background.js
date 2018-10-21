@@ -25,6 +25,7 @@ const newStorage = () => {
 const execStore = async (request, storage, sendResponse) => {
     const value = {
         url: request.url,
+        scope: request.scope,
         title: request.title,
         timestamp: request.timestamp,
         coverImageUrl: request.coverImageUrl,
@@ -90,7 +91,7 @@ const newTabWithRecovery = async (request, storage, sendResponse) => {
     const tab = await new Promise((resolve) => chrome.tabs.create({url: request.url}, (tab) => resolve(tab)));
 
     await executeScriptIntoTab(tab.id, { file: 'assets/vendors/jquery-3.2.1.min.js' });
-    await executeScriptIntoTab(tab.id, { code: 'const valueFromNewTabWithRecovery = \'' + valueFromLocalStorage.contents + '\''});
+    await executeScriptIntoTab(tab.id, { code: 'const valueFromNewTabWithRecovery = ' + JSON.stringify(valueFromLocalStorage) + ';'});
     await executeScriptIntoTab(tab.id, { file: 'assets/js/inject.min.js' });
 };
 
