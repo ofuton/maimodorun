@@ -29,7 +29,8 @@
     "eslint:fix": "./node_modules/.bin/eslint --fix ./src/scripts/*.js",
     "gulp:watch": "./node_modules/.bin/gulp watch",
     "gulp:build": "./node_modules/.bin/gulp build",
-    "gulp:clean": "./node_modules/.bin/gulp clean"
+    "gulp:clean": "./node_modules/.bin/gulp clean:all",
+    "gulp:deploy": "./node_modules/.bin/gulp deploy"
   },
   "repository": {
     "type": "git",
