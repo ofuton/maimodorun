@@ -1,0 +1,28 @@
+language: node_js
+node_js:
+  - stable
+cache:
+  directories:
+    - dist
+    - node_modules
+jobs:
+  include:
+    - stage: build
+      script: echo "Building app ..."
+      script: npm run gulp:build
+    - stage: deploy
+      if: branch = master
+      script: echo "Deploying to GitHub releases ..."
+      before_deploy:
+        - git config --local user.name "$GIT_CONFIG_NAME"
+        - git config --local user.email "$GIT_CONFIG_EMAIL"
+        - git tag "v$(cat ./src/manifest.json  | jq -r '.version')"
+        - npm run gulp:deploy
+      deploy:
+        provider: releases
+        api_key:
+          secure: AhNzYVwZCCc7HlA2y0O03dQDZvG9wgGeAAB5wdlDd2/VsTXOglhGUxESEG0n7JI2L7iOrj2Y5r77bUpkxTE3aaZbrhkR/g9pBVggQ4WG4GSSJtQ6f9sqGsa0V3HCoNzFhu5hIRwq3gIn1ny/s1SJZgKA9bssFFX7E5zSJd0+SJgcL/gwYYiwEAuOCjqFy08i7D5seeSMCkKhq8Gm7PqjzDwZD/GG5B5uP4M/GMwdLP04XfFS/OXyTaQs/7qi5t8lRnFHIjl7W3Nr8OpmSZDjJ1UQ6uountxz0LcK7rfSj0+v002OWIUnYIIm5G2j558PQW/ogonqJJpJvRbC/TZCeb5YVfberogGTk9kTHOKFAJ0r/5SaySLYcpl0Wm2ELgvH/oqbZgMM/5tQ5cMgxw927W8SiF7F3TKIiKvfTD2EvkMkHdEH/gMuvWDh0Dc1bs+7BPwBZvQkl/Cop8rkDZcEm4l6Vp/Iu43KVt9OPwXBIZL2kfA2eDLbCx0VM3IDqqWt+4FGQ5h43y6hUsEeovh9aT2sn3MUAlcMbF171izKeEgYf6nqvOkl0LOZ6bJZ0RaSjftjsDpFi7HXOyASUdFvR5OFv5d6RaP/tyYIUQWt4mBTPDFVj+o0fJ1e+VThM7WwxHoVIVj+5GN9g3jSzzj3jdn8U6v3w0sf0qPx7F28FU=
+        skip_cleanup: true
+        file: archive.zip
+        on:
+          tags: false
