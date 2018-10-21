@@ -22,6 +22,19 @@ const newStorage = () => {
     });
 };
 
+const execInit = async (storage, sendResponse) => {
+    let response;
+    try {
+        await storage.init();
+        response = { status: 'OK'};
+    } catch (error) {
+        console.error(error);
+        response = { status: error.message }
+    }
+
+    sendResponse(response);
+};
+
 const execStore = async (request, storage, sendResponse) => {
     const value = {
         url: request.url,
@@ -99,6 +112,9 @@ const newTabWithRecovery = async (request, storage, sendResponse) => {
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     const storage = newStorage();
     switch (request.type) {
+    case 'init':
+        execInit(storage, sendResponse);
+        break;
     case 'store':
         execStore(request, storage, sendResponse);
         break;

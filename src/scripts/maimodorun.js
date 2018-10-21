@@ -125,4 +125,6 @@ $(window).on('load hashchange', () => {
         'click', threadCommentReplyLinks,
         maimodorunMainFunc('.ocean-ui-comments-post')
     );
+
+    initStorage();
 });

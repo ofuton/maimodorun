@@ -38,6 +38,14 @@ const getScope = (element) => {
     return prefix + '.' + suffix;
 };
 
+const initStorage = () => {
+    return new Promise((resolve) => {
+        chrome.runtime.sendMessage({type: 'init'}, (response) => {
+            resolve(response);
+        });
+    });
+};
+
 const getValueFromStorage = (baseEl) => {
     return new Promise((resolve, reject) => {
         const url = getRecoveryURL(baseEl);
