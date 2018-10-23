@@ -25,12 +25,17 @@ gulp.task('scripts', () => {
 });
 
 gulp.task('styles', () => {
+    const plumber = require('gulp-plumber');
+    const notify  = require('gulp-notify');
     const postcss = require('gulp-postcss');
     const sourcemaps = require('gulp-sourcemaps');
     const rename = require('gulp-rename');
 
     return gulp.src('./src/styles/*.css')
         .pipe(sourcemaps.init())
+        .pipe(plumber({
+            errorHandler: notify.onError("Error: <%= error.message %>")
+        }))
         .pipe(postcss([
             require('postcss-import'),
             require('postcss-preset-env'),
