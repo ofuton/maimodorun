@@ -1,0 +1,52 @@
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="../css/material-icons.min.css">
+  <link rel="stylesheet" href="../css/popup.min.css">
+</head>
+
+<body>
+  <div class="maimodorun-popup">
+    <div class="recovery-data">
+      <div class="recovery-data-header">
+        <span class="recovery-data-header-title">保存された復元可能なデータ</span>
+      </div>
+      <div class="recovery-data-body">
+        <ul class="popup-ul recovery-data-body-ul">
+          <li class="popup-li recovery-data-body-li">まだ保存されたテキストはありません</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <script id="item_lists" type="text/template">
+    <% _.each(lists, function(list) { %>
+      <li class="popup-li">
+        <div class="popup-li-info-sec popup-recovery-btn" href="<%- list.url %>">
+          <div class="popup-li-info-left-sec">
+            <div class="popup-li-info-left-image">
+              <img src="<%- list.coverImageUrl %>">
+            </div>
+          </div>
+          <div class="popup-li-info-right-sec">
+            <div class="popup-li-info-right-header-sec">
+              <div class="popup-li-info-right-page-title" title="<%- list.title %>"><%- list.title %></div>
+              <div class="popup-li-info-right-timestamp"><%- list.timestamp %></div>
+            </div>
+            <div class="popup-li-info-right-page-string" title="<%- list.contents %>"><%= list.contents %></div>
+          </div>
+        </div>
+        <div class="popup-li-remove">
+          <i class="material-icons popup-li-remove-btn" href="<%- list.url %>">delete</i>
+        </div>
+      </li>
+    <% }); %>
+  </script>
+  <script src="../vendors/jquery-3.2.1.min.js"></script>
+  <script src="../vendors/underscore-min.js"></script>
+  <script src="../vendors/moment-with-locales.min.js"></script>
+  <script src="../js/popup.min.js"></script>
+</body>
+
+</html>

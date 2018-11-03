@@ -1,0 +1,120 @@
+/* ==== POPUP === */
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", YuGothic, "ヒラギノ角ゴ ProN W3", Hiragino Kaku Gothic ProN, Arial, "メイリオ", Meiryo, sans-serif;
+}
+
+.maimodorun-popup {
+  width: 400px;
+  height: 500px;
+  padding: 20px 10px;
+}
+
+.recovery-data {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.recovery-data-header {
+  padding: 0 0 10px 10px;
+}
+
+.recovery-data-header-title {
+  color: #616161;
+  font-size: 1.2em;
+}
+
+/* popup-li */
+
+.popup-ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  cursor: pointer;
+}
+
+.popup-li {
+  position: relative;
+  padding: 12px 6px;
+}
+
+.popup-li:hover {
+  background: #f5f5f5;
+}
+
+.popup-li-info-sec {
+  display: flex;
+}
+
+.popup-li-info-left-sec {
+  width: 14%;
+}
+
+.popup-li-info-right-sec {
+  width: 86%;
+}
+
+.popup-li-info-left-image img {
+  margin: 3px 0 0 0;
+  width: 39px;
+  height: 39px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.popup-li-info-right-header-sec {
+  display: flex;
+  margin-bottom: 4px;
+}
+
+.popup-li-info-right-page-title {
+  width: 80%;
+  color: #060606;
+  font-size: 15px;
+  font-weight: bold;
+  line-height: 23px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.popup-li-info-right-timestamp {
+  width: 20%;
+  font-size: 12px;
+  color: #15c;
+  text-align: right;
+}
+
+.popup-li-info-right-sub-sec {
+  display: flex;
+}
+
+.popup-li-info-right-page-string {
+  width: 80%;
+  font-size: 12px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.popup-li-remove {
+  position: absolute;
+  right: 10px;
+  bottom: 14px;
+}
+
+.popup-li-remove i {
+  width: 18px;
+  height: 18px;
+  opacity: 0;
+  color: #000;
+  cursor: pointer;
+}
+
+.popup-li:hover .popup-li-remove i {
+  opacity: 0.4;
+}
+
+.popup-li:hover .popup-li-remove i:hover {
+  opacity: 0.6;
+}
