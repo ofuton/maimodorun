@@ -1,0 +1,24 @@
+.l-header {
+    position: relative;
+    margin: 1.8rem 2rem 2.5rem 2rem;
+    background-color: transparent;
+}
+
+.l-header-title {
+    margin-bottom: 0;
+    color: #3C3C3C;
+    letter-spacing: .05rem;
+    font-size: 1.8rem;
+    font-family: "Noto Sans CJK JP Black", sans-serif;
+}
+
+.l-header-available-count {
+    position: absolute;
+    display: block;
+    bottom: -1.05rem;
+    left: .1rem;
+    color: #a4aabc;
+    letter-spacing: .05rem;
+    font-size: .75rem;
+    font-family: "Noto Sans CJK JP Bold", sans-serif;
+}

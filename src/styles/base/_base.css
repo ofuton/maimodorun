@@ -1,0 +1,11 @@
+html {
+    min-height: var(--popup-body-height);
+    min-width: var(--popup-body-width);
+    background-color: var(--popup-body-background-color);
+}
+
+body {
+    background-color: transparent;
+}
+
+

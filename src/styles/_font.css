@@ -1,9 +1,35 @@
 /* Roboto Fonts */
 @font-face {
     font-family: 'Roboto-Black';
-    src: url('../fonts/roboto/Roboto-Black.ttf') format("truetype");
+    src: url('../fonts/Roboto/Roboto-Black.ttf') format("truetype");
 }
 @font-face {
     font-family: 'Roboto-Medium';
-    src: url("../fonts/roboto/Roboto-Medium.ttf") format("truetype");
+    src: url("../fonts/Roboto/Roboto-Medium.ttf") format("truetype");
+}
+@font-face {
+    font-family: 'Roboto-Regular';
+    src: url("../fonts/Roboto/Roboto-Regular.ttf") format("truetype");
+}
+
+/* NotoSansCJKJP Fonts */
+@font-face {
+    font-family: 'Noto Sans CJK JP Black';
+    src: url("../fonts/NotoSansCJKJP/NotoSansJP-Black.otf") format("opentype");
+}
+@font-face {
+    font-family: 'Noto Sans CJK JP Bold';
+    src: url("../fonts/NotoSansCJKJP/NotoSansJP-Bold.otf") format("opentype");
+}
+@font-face {
+    font-family: 'Noto Sans CJK JP Medium';
+    src: url("../fonts/NotoSansCJKJP/NotoSansJP-Medium.otf") format("opentype");
+}
+@font-face {
+    font-family: 'Noto Sans CJK JP Regular';
+    src: url("../fonts/NotoSansCJKJP/NotoSansJP-Regular.otf") format("opentype");
+}
+@font-face {
+    font-family: 'Noto Sans CJK JP Light';
+    src: url("../fonts/NotoSansCJKJP/NotoSansJP-Light.otf") format("opentype");
 }
