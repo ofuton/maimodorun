@@ -1,9 +1,11 @@
 const gulp = require('gulp');
+const plumber = require('gulp-plumber');
+const notify  = require('gulp-notify');
 
 gulp.task('watch', () => {
-    gulp.watch('./src/scripts/*.js', gulp.task('scripts'));
-    gulp.watch('./src/styles/*.css', gulp.task('styles'));
-    gulp.watch('./src/html/*.html', gulp.task('html'));
+    gulp.watch('./src/scripts/**/*.js', gulp.task('scripts'));
+    gulp.watch('./src/styles/**/*.css', gulp.task('styles'));
+    gulp.watch('./src/html/**/*.pug', gulp.task('html'));
 
     // static files
     gulp.watch('./src/fonts/**', gulp.task('fonts'));
@@ -14,7 +16,7 @@ gulp.task('watch', () => {
 
 gulp.task('scripts', () => {
     const minify = require('gulp-minify');
-    return gulp.src('./src/scripts/*.js')
+    return gulp.src('./src/scripts/**/*.js')
         .pipe(minify({
             ext:{
                 min:'.min.js'
@@ -25,13 +27,11 @@ gulp.task('scripts', () => {
 });
 
 gulp.task('styles', () => {
-    const plumber = require('gulp-plumber');
-    const notify  = require('gulp-notify');
     const postcss = require('gulp-postcss');
     const sourcemaps = require('gulp-sourcemaps');
     const rename = require('gulp-rename');
 
-    return gulp.src('./src/styles/*.css')
+    return gulp.src('./src/styles/**/*.css')
         .pipe(sourcemaps.init())
         .pipe(plumber({
             errorHandler: notify.onError("Error: <%= error.message %>")
@@ -51,7 +51,14 @@ gulp.task('styles', () => {
 });
 
 gulp.task('html', () => {
-    return gulp.src('./src/html/**')
+    const pug = require('gulp-pug');
+    return gulp.src(['./src/html/**/*.pug', '!./src/html/**/_*.pug'])
+        .pipe(plumber({
+            errorHandler: notify.onError("Error: <%= error.message %>")
+        }))
+        .pipe(pug({
+            pretty: true
+        }))
         .pipe(gulp.dest('./dist/assets/html'));
 });
 
