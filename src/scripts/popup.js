@@ -1,3 +1,8 @@
+const renderHistoriesEmptyView = () => {
+    const html = historiesEmptyRenderTemplate();
+    document.getElementById('l-histories').insertAdjacentHTML('beforeend', html);
+};
+
 const renderAvailableCount = (values) => {
     const availableString = `${values.length}個のアクティビティ`;
     document.getElementById('l-header-available-count').textContent = availableString;
@@ -6,6 +11,12 @@ const renderAvailableCount = (values) => {
 const renderDecrementAvailableCount = () => {
     const element = document.getElementById('l-header-available-count').innerText;
     const now = parseInt(element, 10);
+    // 一つもアクティビティが存在しない場合は Empty View を表示する
+    if (now <= 1) {
+        document.getElementById('l-header-available-count').remove();
+        renderHistoriesEmptyView();
+        return;
+    }
     document.getElementById('l-header-available-count').textContent = `${now - 1}個のアクティビティ`;
 };
 
@@ -54,7 +65,7 @@ const renderLists = (values) => {
         return history;
     });
     const html = historiesRenderTemplate({ histories: histories });
-    document.getElementById('l-histories-list').insertAdjacentHTML('beforeend', html);
+    document.getElementById('l-histories').insertAdjacentHTML('beforeend', html);
 };
 
 const getValues = () => {
@@ -129,7 +140,11 @@ const removeItemButtonEvent = () => {
 
 const constructPopupScreen = async () => {
     const values = await getValues();
-    if (values.length <= 0) return;
+    // アクティビティがなければ EmptyView を表示するのみ
+    if (values.length <= 0) {
+        renderHistoriesEmptyView();
+        return;
+    }
 
     sortToDescendingOrderUnixtime(values);
     renderAvailableCount(values);

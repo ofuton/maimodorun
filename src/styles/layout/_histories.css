@@ -134,7 +134,7 @@
     height: 2rem;
     padding: .26rem .7rem .25rem 1.9rem;
     font-size: .8rem;
-    font-family: "Noto Sans CJK JP Medium", sans-serif;
+    font-family: "Noto Sans CJK JP Regular", sans-serif;
     color: var(--popup-card-tag-color);
     letter-spacing: .03rem;
     border: 2px solid var(--popup-card-tag-border-color);
@@ -160,7 +160,7 @@
     position: relative;
     margin: .35rem 0 0 2.25rem;
     font-size: .8rem;
-    font-family: "Noto Sans CJK JP Medium", sans-serif;
+    font-family: "Noto Sans CJK JP Regular", sans-serif;
     letter-spacing: .05rem;
     color: var(--popup-card-time-color);
 }

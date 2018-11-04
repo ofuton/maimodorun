@@ -1,0 +1,32 @@
+.l-histories-empty-container {
+    width: 100%;
+    height: 100%;
+    margin: 2rem 0;
+    text-align: center;
+}
+
+.l-histories-empty-svg svg {
+    width: 60%;
+}
+
+.l-histories-empty-message {
+    margin: 1.2rem 0;
+}
+
+.l-histories-empty-message h2 {
+    font-size: 1rem;
+    font-family: "Noto Sans CJK JP Bold", sans-serif;
+    letter-spacing: .05rem;
+    color: #757575;
+    /*color: var(--popup-card-time-color);*/
+}
+
+.l-histories-empty-message p {
+    margin: 0 4.5rem;
+    padding: .5rem 0;
+    font-size: .85rem;
+    font-family: "Noto Sans CJK JP Medium", sans-serif;
+    letter-spacing: .05rem;
+    line-height: 1.45rem;
+    color: #9E9E9E;
+}

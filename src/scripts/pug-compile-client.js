@@ -17,9 +17,18 @@ const compileHistoriesTemplate = () => {
     fs.writeFileSync('./dist/assets/js/templates/histories.min.js', historiesRenderTemplate);
 };
 
+const compileHistoriesEmptyTemplate = () => {
+    const historiesEmptyRenderTemplate = pug.compileFileClient(
+        './src/html/client/_client_histories_empty_template.pug',
+        {name: "historiesEmptyRenderTemplate"}
+    );
+    fs.writeFileSync('./dist/assets/js/templates/histories_empty.min.js', historiesEmptyRenderTemplate);
+};
+
 const compileClient = () => {
     initPugCompileClient();
     compileHistoriesTemplate();
+    compileHistoriesEmptyTemplate();
 };
 
 (() => {
