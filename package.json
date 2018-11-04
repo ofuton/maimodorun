@@ -33,7 +33,8 @@
     "gulp:watch": "./node_modules/.bin/gulp watch",
     "gulp:build": "./node_modules/.bin/gulp build",
     "gulp:clean": "./node_modules/.bin/gulp clean:all",
-    "gulp:deploy": "./node_modules/.bin/gulp deploy"
+    "gulp:deploy": "./node_modules/.bin/gulp deploy",
+    "gulp:pug:client": "./node_modules/.bin/gulp pug:client"
   },
   "repository": {
     "type": "git",
