@@ -1,6 +1,6 @@
 .l-header {
     position: relative;
-    margin: 1.8rem 2rem 2.5rem 2rem;
+    padding: 1.8rem 2rem 2.5rem 2rem;
     background-color: transparent;
 }
 
@@ -15,10 +15,10 @@
 .l-header-available-count {
     position: absolute;
     display: block;
-    bottom: -1.05rem;
-    left: .1rem;
-    color: #a4aabc;
-    letter-spacing: .05rem;
+    bottom: 1.4rem;
+    left: 2.1rem;
+    color: #848998;
+    letter-spacing: .055rem;
     font-size: .75rem;
-    font-family: "Noto Sans CJK JP Bold", sans-serif;
+    font-family: "Noto Sans CJK JP Regular", sans-serif;
 }
