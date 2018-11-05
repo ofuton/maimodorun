@@ -18,7 +18,6 @@
     font-family: "Noto Sans CJK JP Bold", sans-serif;
     letter-spacing: .05rem;
     color: #757575;
-    /*color: var(--popup-card-time-color);*/
 }
 
 .l-histories-empty-message p {
