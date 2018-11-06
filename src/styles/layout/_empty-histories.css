@@ -15,7 +15,8 @@
 
 .l-histories-empty-message h2 {
     font-size: 1rem;
-    font-family: "Noto Sans CJK JP Bold", sans-serif;
+    font-family: "Noto Sans JP", sans-serif;
+    font-weight: 700;
     letter-spacing: .05rem;
     color: #757575;
 }
@@ -24,7 +25,8 @@
     margin: 0 4.5rem;
     padding: .5rem 0;
     font-size: .85rem;
-    font-family: "Noto Sans CJK JP Medium", sans-serif;
+    font-family: "Noto Sans JP", sans-serif;
+    font-weight: 500;
     letter-spacing: .05rem;
     line-height: 1.45rem;
     color: #9E9E9E;

@@ -9,7 +9,8 @@
     color: #3C3C3C;
     letter-spacing: .05rem;
     font-size: 1.8rem;
-    font-family: "Noto Sans CJK JP Black", sans-serif;
+    font-family: "Noto Sans JP", sans-serif;
+    font-weight: 900;
 }
 
 .l-header-available-count {
@@ -20,5 +21,6 @@
     color: #848998;
     letter-spacing: .055rem;
     font-size: .75rem;
-    font-family: "Noto Sans CJK JP Regular", sans-serif;
+    font-family: "Noto Sans JP", sans-serif;
+    font-weight: 400;
 }

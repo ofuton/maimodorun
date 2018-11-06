@@ -9,7 +9,6 @@ gulp.task('watch', () => {
     gulp.watch('./src/html/client/**/*.pug', gulp.task('pug:client'));
 
     // static files
-    gulp.watch('./src/fonts/**', gulp.task('fonts'));
     gulp.watch('./src/images/**', gulp.task('images'));
     gulp.watch('./src/vendors/**', gulp.task('vendors'));
     gulp.watch('./src/manifest.json', gulp.task('manifest'));
@@ -74,11 +73,6 @@ gulp.task('pug:client', (done) => {
     });
 });
 
-gulp.task('fonts', () => {
-    return gulp.src('./src/fonts/**')
-        .pipe(gulp.dest('./dist/assets/fonts'));
-});
-
 gulp.task('images', () => {
     const imagemin = require('gulp-imagemin');
     return gulp.src('./src/images/**')
@@ -128,7 +122,6 @@ gulp.task('build',
             'styles',
             'html',
             'pug:client',
-            'fonts',
             'images',
             'vendors',
             'manifest'
