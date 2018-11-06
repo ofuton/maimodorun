@@ -88,7 +88,7 @@
 .l-histories-list-card-right-top-title h2 {
     font-size: .9rem;
     font-family: "Noto Sans JP", sans-serif;
-    font-weight: 300;
+    font-weight: 500;
     color: var(--popup-card-title-color);
 }
 
@@ -159,7 +159,7 @@
 
 .l-histories-list-card-right-bottom-right-time {
     position: relative;
-    margin: .35rem 0 0 2.25rem;
+    margin: .32rem 0 0 2.25rem;
     font-size: .8rem;
     font-family: "Noto Sans JP", sans-serif;
     font-weight: 500;
