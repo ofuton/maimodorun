@@ -13,7 +13,10 @@
     "gulp": "^4.0.0",
     "gulp-imagemin": "^4.1.0",
     "gulp-minify": "^3.1.0",
+    "gulp-notify": "^3.2.0",
+    "gulp-plumber": "^1.2.0",
     "gulp-postcss": "^8.0.0",
+    "gulp-pug": "^4.0.1",
     "gulp-rename": "^1.4.0",
     "gulp-sourcemaps": "^2.6.4",
     "gulp-zip": "^4.2.0",
@@ -30,7 +33,8 @@
     "gulp:watch": "./node_modules/.bin/gulp watch",
     "gulp:build": "./node_modules/.bin/gulp build",
     "gulp:clean": "./node_modules/.bin/gulp clean:all",
-    "gulp:deploy": "./node_modules/.bin/gulp deploy"
+    "gulp:deploy": "./node_modules/.bin/gulp deploy",
+    "gulp:pug:client": "./node_modules/.bin/gulp pug:client"
   },
   "repository": {
     "type": "git",

@@ -1,12 +1,14 @@
 const gulp = require('gulp');
+const plumber = require('gulp-plumber');
+const notify  = require('gulp-notify');
 
 gulp.task('watch', () => {
-    gulp.watch('./src/scripts/*.js', gulp.task('scripts'));
-    gulp.watch('./src/styles/*.css', gulp.task('styles'));
-    gulp.watch('./src/html/*.html', gulp.task('html'));
+    gulp.watch('./src/scripts/**/*.js', gulp.task('scripts'));
+    gulp.watch('./src/styles/**/*.css', gulp.task('styles'));
+    gulp.watch('./src/html/**/*.pug', gulp.task('html'));
+    gulp.watch('./src/html/client/**/*.pug', gulp.task('pug:client'));
 
     // static files
-    gulp.watch('./src/fonts/**', gulp.task('fonts'));
     gulp.watch('./src/images/**', gulp.task('images'));
     gulp.watch('./src/vendors/**', gulp.task('vendors'));
     gulp.watch('./src/manifest.json', gulp.task('manifest'));
@@ -14,7 +16,7 @@ gulp.task('watch', () => {
 
 gulp.task('scripts', () => {
     const minify = require('gulp-minify');
-    return gulp.src('./src/scripts/*.js')
+    return gulp.src('./src/scripts/**/*.js')
         .pipe(minify({
             ext:{
                 min:'.min.js'
@@ -29,8 +31,11 @@ gulp.task('styles', () => {
     const sourcemaps = require('gulp-sourcemaps');
     const rename = require('gulp-rename');
 
-    return gulp.src('./src/styles/*.css')
+    return gulp.src('./src/styles/**/*.css')
         .pipe(sourcemaps.init())
+        .pipe(plumber({
+            errorHandler: notify.onError("Error: <%= error.message %>")
+        }))
         .pipe(postcss([
             require('postcss-import'),
             require('postcss-preset-env'),
@@ -46,13 +51,26 @@ gulp.task('styles', () => {
 });
 
 gulp.task('html', () => {
-    return gulp.src('./src/html/**')
+    const pug = require('gulp-pug');
+    return gulp.src([
+            './src/html/**/*.pug',
+            '!./src/html/**/_*.pug',
+            '!./src/html/**/_client_*.pug'
+        ])
+        .pipe(plumber({
+            errorHandler: notify.onError("Error: <%= error.message %>")
+        }))
+        .pipe(pug({
+            pretty: true
+        }))
         .pipe(gulp.dest('./dist/assets/html'));
 });
 
-gulp.task('fonts', () => {
-    return gulp.src('./src/fonts/**')
-        .pipe(gulp.dest('./dist/assets/fonts'));
+gulp.task('pug:client', (done) => {
+    const exec = require('child_process').exec;
+    exec('node ./src/scripts/pug-compile-client.js', (stdout, stderr) => {
+        done();
+    });
 });
 
 gulp.task('images', () => {
@@ -103,7 +121,7 @@ gulp.task('build',
             'scripts',
             'styles',
             'html',
-            'fonts',
+            'pug:client',
             'images',
             'vendors',
             'manifest'

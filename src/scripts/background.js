@@ -5,6 +5,7 @@ const executeScriptIntoTab = (tabId, obj) => {
 const newStorage = () => {
     return new Storage({
         db: 'maimodorun',
+        version: 2,
         store: {
             name: 'formText',
             keyPath: 'url',
@@ -21,9 +22,23 @@ const newStorage = () => {
     });
 };
 
+const execInit = async (storage, sendResponse) => {
+    let response;
+    try {
+        await storage.init();
+        response = { status: 'OK'};
+    } catch (error) {
+        console.error(error);
+        response = { status: error.message }
+    }
+
+    sendResponse(response);
+};
+
 const execStore = async (request, storage, sendResponse) => {
     const value = {
         url: request.url,
+        scope: request.scope,
         title: request.title,
         timestamp: request.timestamp,
         coverImageUrl: request.coverImageUrl,
@@ -89,7 +104,7 @@ const newTabWithRecovery = async (request, storage, sendResponse) => {
     const tab = await new Promise((resolve) => chrome.tabs.create({url: request.url}, (tab) => resolve(tab)));
 
     await executeScriptIntoTab(tab.id, { file: 'assets/vendors/jquery-3.2.1.min.js' });
-    await executeScriptIntoTab(tab.id, { code: 'const valueFromNewTabWithRecovery = \'' + valueFromLocalStorage.contents + '\''});
+    await executeScriptIntoTab(tab.id, { code: 'const valueFromNewTabWithRecovery = ' + JSON.stringify(valueFromLocalStorage) + ';'});
     await executeScriptIntoTab(tab.id, { file: 'assets/js/inject.min.js' });
 };
 
@@ -97,6 +112,9 @@ const newTabWithRecovery = async (request, storage, sendResponse) => {
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     const storage = newStorage();
     switch (request.type) {
+    case 'init':
+        execInit(storage, sendResponse);
+        break;
     case 'store':
         execStore(request, storage, sendResponse);
         break;

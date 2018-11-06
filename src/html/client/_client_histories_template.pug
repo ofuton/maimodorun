@@ -1,0 +1,55 @@
+ul#l-histories-list.l-histories-list
+  each history, index in histories
+    li
+      section.l-histories-list-card-container
+        button.l-histories-list-card(type="button" href=history.url)
+          div.l-histories-list-card-left
+            div.l-histories-list-img-container
+              img(src=history.imageUrl)
+          div.l-histories-list-card-right
+            div.l-histories-list-card-right-container
+              div.l-histories-list-card-right-top
+                div.l-histories-list-card-right-top-title
+                  h2
+                    span #{history.title}
+                    case history.scope
+                      when "Thread.Body"
+                        |  で本文を書きました
+                      when "Thread.Reply"
+                        |  で返信を書きました
+                      when "People.Body"
+                        |  で本文を書きました
+                      when "People.Reply"
+                        |  で投稿しました
+                      when "Message.Body"
+                        |  で送信しました
+                      default
+                        |  でのアクティビティ
+                div.l-histories-list-card-right-top-body
+                  p !{history.body}
+              div.l-histories-list-card-right-bottom
+                div.l-histories-list-card-right-bottom-container
+                  div.l-histories-list-card-right-bottom-left
+                    div.l-histories-list-card-right-bottom-left-tag
+                      span
+                        case history.scope
+                          when "Thread.Body"
+                            | スレッド / 本文
+                          when "Thread.Reply"
+                            | スレッド / 返信
+                          when "People.Body"
+                            | ピープル / 本文
+                          when "People.Reply"
+                            | ピープル / 返信
+                          when "Message.Body"
+                            | メッセージ / 本文
+                          default
+                            | 不明
+                  div.l-histories-list-card-right-bottom-right
+                    div.l-histories-list-card-right-bottom-right-time
+                      span #{history.fromNow}
+        div.l-histories-list-card-remove-container
+          button.l-histories-list-card-remove
+            div.l-histories-list-card-remove-svg(href=history.url)
+              include ../../images/popup/trash.svg
+        div.l-histories-list-card-shadow
