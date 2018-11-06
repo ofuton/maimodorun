@@ -15,9 +15,40 @@ const getCurrentURL = () => {
     return matches && matches[0];
 };
 
-const getValueFromStorage = () => {
+const getRecoveryURL = (element) => {
+    const url = getCurrentURL();
+    if (!url) return null;
+
+    const commentsPostElement = element.closest('.ocean-ui-comments-post');
+    if (commentsPostElement.length === 0) return url;
+
+    const pattern = /ocean-ui-comments-post-id-(\d+)/;
+    const matches = commentsPostElement.attr('class').match(pattern);
+
+    return matches ? url + '/' + matches[1] : url;
+};
+
+const getScope = (element) => {
+    // TODO: Thread 以外が増えたら対応
+    const prefix = 'Thread';
+
+    const commentsPostElement = element.closest('.ocean-ui-comments-post');
+    const suffix = commentsPostElement.length === 0 ? 'Body' : 'Reply';
+
+    return prefix + '.' + suffix;
+};
+
+const initStorage = () => {
+    return new Promise((resolve) => {
+        chrome.runtime.sendMessage({type: 'init'}, (response) => {
+            resolve(response);
+        });
+    });
+};
+
+const getValueFromStorage = (baseEl) => {
     return new Promise((resolve, reject) => {
-        url = getCurrentURL();
+        const url = getRecoveryURL(baseEl);
         if (!url) {
             resolve(null);
             return;

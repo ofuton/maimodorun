@@ -1,57 +1,3 @@
-const checkTextAreaDisplay = () => {
-    return new Promise(resolve => {
-        const setIntervalId = setInterval(() => {
-            const commentForm = $(document).find(threadCommentTextArea);
-            if(commentForm.length > 0) {
-                clearInterval(setIntervalId);
-                resolve();
-            }
-        }, 200);
-    });
-};
-
-const insertMaimodorunBtnInTopRightOfForm = () => {
-    $(document).find(threadCommentFormWrap).prepend(createMaimodorunBtnElInTopRightOfForm);
-};
-
-const createMaimodorunBtnElInTopRightOfForm = () => {
-    const template = [
-        "<div class=\"<%= btnClass %>\">",
-            "<img src=\"<%= src %>\" class=\"maimodorun-button-in-top-right-of-form\">",
-        '</div>',
-    ].join('');
-    const compiledTemplate = _.template(template);
-    return compiledTemplate({ btnClass: threadCommentInTopRightOfFormMaimodorunBtn.slice(1), src: chrome.extension.getURL('./assets/images/icon48.png') });
-};
-
-const removeMaimodorunBtnInTopRightOfForm = () => {
-    if ($(threadCommentInTopRightOfFormMaimodorunBtn).length === 0) return;
-    $(threadCommentInTopRightOfFormMaimodorunBtn).remove();
-};
-
-const recoveryFromTopRightOfForm = async () => {
-    openTextArea();
-    await sleep(10);
-    const value = await getValueFromStorage();
-    renderContentsToForm(value.contents);
-};
-
-const openTextArea = () =>  {
-    $(document).find(threadCommentTextArea)[0].focus();
-};
-
-const renderContentsToForm = (contents) => {
-    $(document).find(threadCommentForm).html(contents);
-};
-
-const checkCommentFormProcess = async () => {
-    const value = await getValueFromStorage();
-    if (!value) return;
-    await checkTextAreaDisplay();
-    insertMaimodorunBtnInTopRightOfForm();
-    $(document).on('mousedown', '.maimodorun-button-in-top-right-of-form', recoveryFromTopRightOfForm);
-};
-
 const createMaimodorunBtnEl = () => {
     createMaimodorunBtnLeftBorder();
     const template = [
@@ -95,31 +41,33 @@ const createFailedAutoSavedSign = (message) => {
     return compiledTemplate({ imgSrc: chrome.extension.getURL('./assets/images/error_mark.png'), message: message });
 };
 
-const insertMaimodorunBtn = async () => {
-    const value = await getValueFromStorage();
-    if ($('.maimodorun-button').length !== 0 || !value) return;
+const insertMaimodorunBtn = async (target) => {
+    const value = await getValueFromStorage(target);
+    const el = target.find('.maimodorun-button');
+    if (el.length !== 0 || !value) return;
 
-    $(threadCommentToolBar).append(createMaimodorunBtnEl());
+    target.find('.goog-toolbar').append(createMaimodorunBtnEl());
 };
 
-const insertAutoSavedSign = () => {
-    // FIXME: v0.1.0 ではこれでいいが，返信にも対応するならば，唯一の要素を指すようにする必要あり
-    if ($('.maimodorun-saved-sign').length !== 0) return;
+const insertAutoSavedSign = (target) => {
+    const el = target.find('.maimodorun-saved-sign');
+    if (el.length !== 0) return;
 
-    $(threadCommentSubmit).after(createAutoSavedSign());
+    target.find('.ocean-ui-comments-commentform-submit').after(createAutoSavedSign());
 };
 
-const removeAutoSavedSign = () => {
-    // FIXME: v0.1.0 ではこれでいいが，返信にも対応するならば，唯一の要素を指すようにする必要あり
-    if ($('.maimodorun-saved-sign').length === 0)  return;
+const removeAutoSavedSign = (target) => {
+    const el = target.find('.maimodorun-saved-sign');
+    if (el.length === 0)  return;
 
-    $('.maimodorun-saved-sign').remove();
+    el.remove();
 };
 
-const insertFailedAutoSavedSign = (message) => {
-    // FIXME: v0.1.0 ではこれでいいが，返信にも対応するならば，唯一の要素を指すようにする必要あり
-    if ($('.maimodorun-saved-sign').length !== 0) return;
-    $(threadCommentSubmit).after(createFailedAutoSavedSign(message));
+const insertFailedAutoSavedSign = (target, message) => {
+    const el = target.find('.maimodorun-saved-sign');
+    if (el.length !== 0) return;
+
+    target.find('.ocean-ui-comments-commentform-submit').after(createFailedAutoSavedSign(message));
 };
 
 const hasAnyContents = (element) => {

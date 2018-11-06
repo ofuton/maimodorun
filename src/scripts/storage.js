@@ -3,6 +3,7 @@ const Storage = class {
     constructor(options = {}) {
         this.options = options;
         this.storeOptions = this.options.store || {};
+        this.version = this.options.version || 1;
         this.maxItemsCount = 50;
         this.nItems = 0;
     }
@@ -13,7 +14,7 @@ const Storage = class {
         const indexes   = this.options.indexes || [];
 
         return new Promise((resolve, reject) => {
-            const request = indexedDB.open(dbname);
+            const request = indexedDB.open(dbname, this.version);
 
             request.onsuccess = (event) => {
                 this.db = event.target.result;
@@ -35,15 +36,31 @@ const Storage = class {
             };
 
             request.onupgradeneeded = (event) => {
-                this.store = event.currentTarget.result.createObjectStore(storeName, this.storeOptions);
+                if (event.oldVersion < 1) {
+                    this.store = request.result.createObjectStore(storeName, this.storeOptions);
 
-                indexes.forEach((index) => {
-                    // if index.unique is undefined, unique is false
-                    const unique = !!index.unique;
-                    this.store.createIndex(index.name, index.property, {
-                        unique
+                    indexes.forEach((index) => {
+                        // if index.unique is undefined, unique is false
+                        const unique = !!index.unique;
+                        this.store.createIndex(index.name, index.property, {
+                            unique
+                        });
                     });
-                });
+                }
+
+                if (event.oldVersion < 2) {
+                    const objectStore = request.transaction.objectStore(this.storeName);
+                    objectStore.openCursor().onsuccess = (event) => {
+                        var cursor = event.target.result;
+                        if (cursor) {
+                            const updateData = cursor.value;
+                            updateData.scope = 'Thread.Body';
+                            cursor.update(updateData);
+                            console.log(cursor.value);
+                            cursor.continue();
+                        }
+                    };
+                }
             };
         });
     }

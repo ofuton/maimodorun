@@ -1,10 +1,10 @@
-const handleAutoSaveError = (error) => {
+const handleAutoSaveError = (element, error) => {
     switch (error.message) {
     case 'ContentsSizeOver':
-        insertFailedAutoSavedSign('保存内容が1MBを超えているため、保存できません。');
+        insertFailedAutoSavedSign(element, '保存内容が1MBを超えているため、保存できません。');
         break;
     case 'CapacityExceededError':
-        insertFailedAutoSavedSign('保存容量を超えています。保存項目を削除し、容量を確保してください。');
+        insertFailedAutoSavedSign(element, '保存容量を超えています。保存項目を削除し、容量を確保してください。');
         break;
     case 'NoContents':
         // 空の内容を保存しようとした例外なのでスルー
@@ -24,8 +24,8 @@ const handleAutoSaveError = (error) => {
     }
 };
 
-const dispatchSave = async () => {
-    const commentForm = $(threadCommentForm);
+const dispatchSave = async (element) => {
+    const commentForm = element.find('.ocean-ui-editor-field');
 
     if (commentForm.length === 0) throw new Error('PageTransitioned');
 
@@ -34,12 +34,13 @@ const dispatchSave = async () => {
 
     if (!hasAnyContents(commentForm)) throw new Error('NoContents');
 
-    const url = getCurrentURL();
+    const url = getRecoveryURL(element);
     if (!url) throw new Error('NotMatchURL');
 
     const coverImageUrl = $(coverImage).css('background-image').replace(/^url\(['"](.+)['"]\)/, '$1');
     return {
-        url: getCurrentURL(),
+        url: url,
+        scope : getScope(element),
         title: document.title,
         timestamp: new Date().getTime(),
         coverImageUrl: coverImageUrl,
@@ -47,56 +48,83 @@ const dispatchSave = async () => {
     };
 };
 
-const formObserver = new MutationObserver(async (MutationRecords, MutationObserver) => {
+const formObserver = new MutationObserver(async (mutations, observer) => {
+    const element = $(mutations[0].target).closest('.ocean-ui-comments-commentform');
+    // TODO: 変更された要素の親をたどってフォーム要素を取得し，以下の関数ではその要素を指定してビューをいじる
     try {
-        removeAutoSavedSign();
+        removeAutoSavedSign(element);
         await debounceFunc(saveInterval);
-        const payload = await dispatchSave();
+        const payload = await dispatchSave(element);
         await setValueIntoStorage(payload);
-        insertAutoSavedSign();
-        insertMaimodorunBtn();
+        insertAutoSavedSign(element);
+        insertMaimodorunBtn(element);
     } catch(error) {
-        handleAutoSaveError(error);
+        handleAutoSaveError(element, error);
     }
 });
 
-$(window).on('load hashchange', () => {
-    // FIXME: Enter で書き込まれた時に発火しなくない？
-    $(document).on('mousedown', threadCommentSubmit, async () => {
+// FIXME: Enter で書き込まれた時に発火しなくない？
+const bindSubmit = (baseEl) => {
+    const submitEl = baseEl.find('.ocean-ui-comments-commentform-submit');
+    submitEl.on('mousedown', async () => {
         try {
             input_event_stack = [];
-            const payload = await dispatchSave();
+            const payload = await dispatchSave(baseEl);
             await setValueIntoStorage(payload);
-            removeAutoSavedSign();
-            checkCommentFormProcess();
+            removeAutoSavedSign(baseEl);
         } catch(error) {
-            handleAutoSaveError(error);
+            handleAutoSaveError(element, error);
         }
     });
+};
 
-    $(document).on('mousedown', threadCommentCancel, () => {
-        removeAutoSavedSign;
-        checkCommentFormProcess();
+const bindCancel = (baseEl) => {
+    const cancelEl = baseEl.find('.ocean-ui-comments-commentform-cancel');
+    cancelEl.on('mousedown', () => {
+        removeAutoSavedSign(baseEl);
     });
+};
 
-    $(document).on('focus', threadCommentTextArea, async (event) => {
+const bindMaimodorunBtn = (baseEl) => {
+    const maimodorunBtn = baseEl.find('.maimodorun-button');
+    maimodorunBtn.on('mousedown', async (event) => {
+        const value = await getValueFromStorage(baseEl);
+
+        $(event.target).closest('.ocean-ui-comments-commentform').find('.ocean-ui-editor-field').html(value.contents);
+    });
+};
+
+const maimodorunMainFunc = (baseDomClass) => {
+    return async (event) => {
+        const baseEl = $(event.target).closest(baseDomClass);
+
         // フォーム要素が構築されるまでちょっと待つ
         await sleep(10);
 
-        removeMaimodorunBtnInTopRightOfForm();
-        insertMaimodorunBtn();
-        formObserver.observe($(threadCommentForm)[0], {
+        bindSubmit(baseEl);
+        bindCancel(baseEl);
+        await insertMaimodorunBtn(baseEl);
+        bindMaimodorunBtn(baseEl);
+
+        formObserver.observe(baseEl.find(threadCommentForm)[0], {
             childList: true,
             attributes: true,
             characterData: true,
             subtree: true
         });
-    });
+    };
+};
 
-    $(document).on('mousedown', '.maimodorun-button', async () => {
-        const value = await getValueFromStorage();
-        $(threadCommentForm).html(value.contents);
-    });
+$(window).on('load hashchange', () => {
+    $(document).on(
+        'focus', threadCommentTextArea,
+        maimodorunMainFunc('.ocean-ui-comments-commentform')
+    );
 
-    checkCommentFormProcess();
+    $(document).on(
+        'click', threadCommentReplyLinks,
+        maimodorunMainFunc('.ocean-ui-comments-post')
+    );
+
+    initStorage();
 });
