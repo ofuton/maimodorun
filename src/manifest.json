@@ -11,8 +11,7 @@
     },
     "background": {
         "scripts": [
-            "./assets/js/storage.min.js",
-            "./assets/js/background.min.js"
+            "./assets/js/background.js"
         ],
         "persistent": false
     },
@@ -25,12 +24,7 @@
                 "https://*.s.cybozu-dev.com/k/*"
             ],
             "js": [
-                "./assets/vendors/jquery-3.2.1.min.js",
-                "./assets/vendors/underscore-min.js",
-                "./assets/js/components.min.js",
-                "./assets/js/utils.min.js",
-                "./assets/js/views.min.js",
-                "./assets/js/maimodorun.min.js"
+                "./assets/js/content.js"
             ],
             "css": [
               "./assets/css/maimodorun.min.css"
@@ -57,7 +51,6 @@
         "assets/images/icon19.png",
         "assets/images/icon48.png",
         "assets/images/icon128.png",
-        "assets/images/error_mark.png",
-        "assets/js/inject.min.js"
+        "assets/images/error_mark.png"
     ]
 }
