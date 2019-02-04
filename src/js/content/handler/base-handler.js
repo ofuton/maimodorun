@@ -107,7 +107,6 @@ export default class BaseHandler {
             try {
                 this.debounceFunc.clear();
                 await this.saveFormText(type, baseElement);
-                removeRecoveryButton(baseElement);
             } catch(error) {
                 this.handleSaveError(baseElement, error);
             }
