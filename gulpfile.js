@@ -1,30 +1,61 @@
 const gulp = require('gulp');
 const plumber = require('gulp-plumber');
 const notify  = require('gulp-notify');
+const path = require('path');
+
+const src = path.resolve(__dirname, 'src');
+const scripts = path.resolve(src, 'js');
 
 gulp.task('watch', () => {
-    gulp.watch('./src/scripts/**/*.js', gulp.task('scripts'));
+    gulp.watch('./src/html/client/**/*.pug', gulp.task('scripts'));
+    gulp.watch('./src/js/**/*.js', gulp.task('js'));
     gulp.watch('./src/styles/**/*.css', gulp.task('styles'));
     gulp.watch('./src/html/**/*.pug', gulp.task('html'));
-    gulp.watch('./src/html/client/**/*.pug', gulp.task('pug:client'));
 
     // static files
     gulp.watch('./src/images/**', gulp.task('images'));
-    gulp.watch('./src/vendors/**', gulp.task('vendors'));
     gulp.watch('./src/manifest.json', gulp.task('manifest'));
 });
 
-gulp.task('scripts', () => {
-    const minify = require('gulp-minify');
-    return gulp.src('./src/scripts/**/*.js')
-        .pipe(minify({
-            ext:{
-                min:'.min.js'
-            },
-            noSource: true
-        }))
+gulp.task('pug:client', (done) => {
+    const exec = require('child_process').exec;
+    exec('node ./scripts/pug-compile-client.js', (stdout, stderr) => {
+        console.log(stderr);
+        done();
+    });
+});
+
+gulp.task('js', () => {
+    const webpackStream = require('webpack-stream');
+    const webpack = require('webpack');
+    const webpackConfig = {
+        // FIXME: watch で実行した際は mode を development にできると良い
+        mode: 'production',
+        entry: {
+            content: path.join(scripts, 'content'),
+            background: path.join(scripts, 'background'),
+            popup: path.join(scripts, 'popup'),
+            inject: path.join(scripts, 'inject'),
+        },
+        output: {
+            filename: '[name].js'
+        },
+        resolve: {
+            extensions: [ '.js' ],
+            modules: [ scripts, 'node_modules' ]
+        },
+    };
+
+    return webpackStream(webpackConfig, webpack)
         .pipe(gulp.dest('./dist/assets/js'));
 });
+
+gulp.task('scripts',
+    gulp.series(
+        'pug:client',
+        'js'
+    )
+);
 
 gulp.task('styles', () => {
     const postcss = require('gulp-postcss');
@@ -54,8 +85,7 @@ gulp.task('html', () => {
     const pug = require('gulp-pug');
     return gulp.src([
             './src/html/**/*.pug',
-            '!./src/html/**/_*.pug',
-            '!./src/html/**/_client_*.pug'
+            '!./src/html/**/_*.pug'
         ])
         .pipe(plumber({
             errorHandler: notify.onError("Error: <%= error.message %>")
@@ -66,13 +96,6 @@ gulp.task('html', () => {
         .pipe(gulp.dest('./dist/assets/html'));
 });
 
-gulp.task('pug:client', (done) => {
-    const exec = require('child_process').exec;
-    exec('node ./src/scripts/pug-compile-client.js', (stdout, stderr) => {
-        done();
-    });
-});
-
 gulp.task('images', () => {
     const imagemin = require('gulp-imagemin');
     return gulp.src('./src/images/**')
@@ -80,14 +103,14 @@ gulp.task('images', () => {
         .pipe(gulp.dest('./dist/assets/images'))
 });
 
-gulp.task('vendors', () => {
-    return gulp.src('./src/vendors/**')
-       .pipe(gulp.dest('./dist/assets/vendors'));
-});
-
 gulp.task('manifest', () => {
     return gulp.src('./src/manifest.json')
         .pipe( gulp.dest('./dist'));
+});
+
+gulp.task('clean:templates', () => {
+    const del = require('del');
+    return del('./src/js/templates/*.js', { force:true });
 });
 
 gulp.task('clean:dist', () => {
@@ -102,6 +125,7 @@ gulp.task('clean:zip', () => {
 
 gulp.task('clean:all',
     gulp.parallel(
+        'clean:templates',
         'clean:dist',
         'clean:zip'
     )
@@ -116,14 +140,13 @@ gulp.task('zip', () => {
 
 gulp.task('build',
     gulp.series(
+        'clean:templates',
         'clean:dist',
         gulp.parallel(
             'scripts',
             'styles',
             'html',
-            'pug:client',
             'images',
-            'vendors',
             'manifest'
         )
     )
