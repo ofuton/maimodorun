@@ -11,10 +11,15 @@ export default class ThreadHandler extends BaseHandler {
         this.threadCommentReplyLinks = '.ocean-ui-comments-commentbase-comment, .ocean-ui-comments-commentbase-commentall';
         this.threadCommentsCommentForm = '.ocean-ui-comments-commentform';
         this.threadCommentsPost = '.ocean-ui-comments-post';
+        this.spaceCover = '.gaia-argoui-space-spacelayout-cover';
     }
 
     run() {
         this.bindOpenEditor('focus', this.threadCommentTextArea, 'Body', this.threadCommentsCommentForm);
         this.bindOpenEditor('click', this.threadCommentReplyLinks, 'Reply', this.threadCommentsPost);
+    }
+
+    getIcon() {
+        return $(this.spaceCover).css('background-image').replace(/^url\(['"](.+)['"]\)/, '$1');
     }
 }

@@ -141,7 +141,7 @@ export default class BaseHandler {
         const url = getKey(type, baseElement, this.pattern);
         if (!url) throw new Error('NotMatchURL');
 
-        const coverImageUrl = $('.gaia-argoui-space-spacelayout-cover').css('background-image').replace(/^url\(['"](.+)['"]\)/, '$1');
+        const coverImageUrl = this.getIcon();
         await this.messageClient.setValueIntoStorage(
             {
                 url: url,
