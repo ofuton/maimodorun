@@ -1,8 +1,5 @@
 import parseQuery from 'utils/parse-query';
-const getPathName = () => location.pathname.replace(/^[/]?/g, '');
-
-// Drops leading hash and slash
-const getHashName = () => location.hash.replace(/^#[/]?/g, '');
+import { getPathName, getHashName } from 'utils/location';
 
 const isThread = hashName => /^space\/\d+\/thread\/\d+(\/\d+)?$/.test(hashName);
 

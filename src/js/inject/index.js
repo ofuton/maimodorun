@@ -7,6 +7,7 @@ const getElementHandlerFromScope = (scope) => {
     case 'Thread.Body':
     case 'People.Body':
     case 'Message.Body':
+    case 'Record.Body':
         el = '.ocean-ui-comments-commentform-textarea';
         return {
             wait: async () => await waitUntilDisplay(el),
