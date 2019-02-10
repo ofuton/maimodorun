@@ -22,6 +22,9 @@ export default class MessageListener {
             case messages.STORAGE_LOAD_ALL:
                 this.loadAllFromStorage(request, sendResponse);
                 break;
+            case messages.STORAGE_LOAD_ITEMS:
+                this.loadItemsFromStorage(request, sendResponse);
+                break;
             case messages.STORAGE_REMOVE:
                 // FIXME: 削除したら対応するタブに消したことを通知する
                 this.removeFromStorage(request, sendResponse);
@@ -61,6 +64,10 @@ export default class MessageListener {
 
     async loadAllFromStorage(request, sendResponse) {
         sendResponse(await this.commandStorage.loadAll());
+    }
+
+    async loadItemsFromStorage(request, sendResponse) {
+        sendResponse(await this.commandStorage.loadItems(request.offsets, request.limits));
     }
 
     async removeFromStorage(request, sendResponse) {

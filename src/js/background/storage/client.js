@@ -64,8 +64,8 @@ export default class Storage {
         });
     }
 
-    _run(type, keyOrValue, mode = 'readonly') {
-        const transaction = this.db.transaction([this.storeName], mode);
+    _read(type, keyOrValue) {
+        const transaction = this.db.transaction([this.storeName], 'readonly');
         const objectStore = transaction.objectStore(this.storeName);
 
         return new Promise((resolve, reject) => {
@@ -77,7 +77,67 @@ export default class Storage {
             }
 
             request.onsuccess = (event) => {
-                if (type === 'put' && this.nItems >= this.maxItemsCount) {
+                result = event.target.result;
+            };
+
+            transaction.oncomplete = () => {
+                resolve(result);
+            };
+
+            transaction.onerror = (event) => {
+                let error = new Error('StoraegOperationError');
+                error.code = event.target.errorCode;
+                reject(error);
+            };
+        });
+    }
+
+    _readWithCursor(offsets, limits) {
+        const transaction = this.db.transaction([this.storeName], 'readonly');
+        const objectStore = transaction.objectStore(this.storeName);
+        const index = objectStore.index('timestamp');
+
+        return new Promise((resolve, reject) => {
+            const results = [];
+            let offset_flag = false;
+            index.openCursor(null, 'prev').onsuccess = event => {
+                let cursor = event.target.result;
+                if (cursor) {
+                    // cursor.advance doesn't allow 0 as argument.
+                    if (offsets > 0 && !offset_flag) {
+                        cursor.advance(offsets);
+                        offset_flag = true;
+                    } else {
+                        if (results.length < limits) {
+                            results.push(cursor.value);
+                            cursor.continue();
+                        }
+                    }
+                }
+            };
+
+            transaction.oncomplete = () => {
+                resolve(results);
+            };
+
+            transaction.onerror = (event) => {
+                let error = new Error('StoraegOperationError');
+                error.code = event.target.errorCode;
+                reject(error);
+            };
+        });
+    }
+
+    _write(type, keyOrValue) {
+        const transaction = this.db.transaction([this.storeName], 'readwrite');
+        const objectStore = transaction.objectStore(this.storeName);
+
+        return new Promise((resolve, reject) => {
+            let request, result;
+            request = objectStore[type](keyOrValue);
+
+            request.onsuccess = (event) => {
+                if (this.nItems >= this.maxItemsCount) {
                     // FIXME: インデックス指定の分離がまだ
                     const index = objectStore.index('timestamp');
                     index.openCursor(null).onsuccess = (event) => {
@@ -107,18 +167,22 @@ export default class Storage {
     }
 
     getItem(key) {
-        return this._run('get', key);
+        return this._read('get', key);
     }
 
     getAllItems() {
-        return this._run('getAll', false);
+        return this._read('getAll');
+    }
+
+    getItems(offsets, limits) {
+        return this._readWithCursor(offsets, limits);
     }
 
     setItem(value) {
-        return this._run('put', value, 'readwrite');
+        return this._write('put', value);
     }
 
     removeItem(key) {
-        return this._run('delete', key, 'readwrite');
+        return this._write('delete', key);
     }
 }

@@ -67,6 +67,16 @@ export default class CommandStorage {
         }
     }
 
+    async loadItems(offsets, limits) {
+        try {
+            await this.storage.init();
+            return { status: 'OK', value: await this.storage.getItems(offsets, limits) };
+        } catch (error) {
+            console.error(error);
+            return { status: error.message, value: [] };
+        }
+    }
+
     async remove(key) {
         try {
             await this.storage.init();
