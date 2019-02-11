@@ -1,6 +1,6 @@
 import $ from 'jquery';
 import MessageClient from 'background/message-client';
-import getKey from 'utils/get-key';
+import { getBaseKey, getReplyKeySuffix } from 'utils/get-key';
 import { debounce } from 'debounce';
 import { sleep, getBytes, hasAnyContents } from 'utils/index';
 import { insertRecoveryButton } from 'content/components/recovery-button';
@@ -59,7 +59,7 @@ export default class BaseHandler {
     }
 
     async displayRecoveryButton(type, baseElement) {
-        const key = getKey(type, baseElement, this.pattern);
+        const key = this.getKey(type, baseElement);
         // FIXME: this.messageClient.hasKeyInStorage に替える
         const value = await this.messageClient.getValueFromStorage(key);
 
@@ -123,10 +123,20 @@ export default class BaseHandler {
 
     onRecover(type, baseElement) {
         return async event => {
-            const key = getKey(type, baseElement, this.pattern);
+            const key = this.getKey(type, baseElement);
             const value = await this.messageClient.getValueFromStorage(key);
             $(event.target).closest(this.commentsCommentForm).find(this.editorField).html(value.contents);
         };
+    }
+
+    getKey(type, baseElement) {
+        const baseKey = getBaseKey(this.pattern);
+        if (!baseKey) {
+            throw new Error('This page url did not match url pattern.');
+        }
+        const key = type === 'Reply' ? baseKey + getReplyKeySuffix(baseElement) : baseKey;
+
+        return key;
     }
 
     async saveFormText(type, baseElement) {
@@ -138,7 +148,7 @@ export default class BaseHandler {
 
         if (!hasAnyContents(commentForm)) throw new Error('NoContents');
 
-        const url = getKey(type, baseElement, this.pattern);
+        const url = this.getKey(type, baseElement);
         if (!url) throw new Error('NotMatchURL');
 
         const coverImageUrl = this.getIcon();

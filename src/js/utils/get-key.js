@@ -12,14 +12,7 @@ const getReplyKeySuffix = baseElement => {
     return matches ? `/${matches[1]}` : '';
 };
 
-const getKey = (type, baseElement, pattern) => {
-    const baseKey = getBaseKey(pattern);
-    if (!baseKey) {
-        throw new Error('This page url did not match url pattern.');
-    }
-    const key = type === 'Reply' ? baseKey + getReplyKeySuffix(baseElement) : baseKey;
-
-    return key;
+export {
+    getBaseKey,
+    getReplyKeySuffix
 };
-
-export default getKey;
