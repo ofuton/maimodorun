@@ -14,6 +14,7 @@ export default class RecordHandler extends BaseHandler {
         this.recordCommentReplyLinks = '.commentlist-footer-reply-gaia, .commentlist-footer-replyall-gaia';
         this.recordSidebarContent = '.gaia-argoui-app-show-sidebar-content';
         this.appIcon = '.gaia-argoui-app-titlebar-icon';
+        this.spaceCover = '.gaia-argoui-app-titlebar-has-background';
     }
 
     run() {
@@ -22,9 +23,14 @@ export default class RecordHandler extends BaseHandler {
     }
 
     getIcon() {
-        const imgSrc = $(this.appIcon).attr('src');
+        const appIcon = $(this.appIcon);
+        const imgSrc = appIcon.length !== 0 ? appIcon.attr('src') : this.getCoverImg();
 
         return /^https:\/\//.test(imgSrc) ? imgSrc : location.origin + imgSrc;
+    }
+
+    getCoverImg() {
+        return $(this.spaceCover).css('background-image').replace(/^url\(['"](.+)['"]\)/, '$1');
     }
 
     getKey(type, baseElement) {
