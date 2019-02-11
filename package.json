@@ -1,6 +1,6 @@
 {
   "name": "maimodorun",
-  "version": "0.1.8",
+  "version": "1.1.0",
   "description": "Maimodorun is a chrome extension to recover unsaved texts on Rich Text Editor(RTE) for kintone.",
   "main": "./dist/js/maimodorun.js",
   "devDependencies": {
