@@ -23,6 +23,8 @@ ul#l-histories-list.l-histories-list
                         |  で投稿しました
                       when "Message.Body"
                         |  で送信しました
+                      when "Record.Body"
+                        |  でコメントしました
                       default
                         |  でのアクティビティ
                 div.l-histories-list-card-right-top-body
@@ -43,6 +45,8 @@ ul#l-histories-list.l-histories-list
                             | ピープル / 返信
                           when "Message.Body"
                             | メッセージ / 本文
+                          when "Record.Body"
+                            | アプリ / コメント
                           default
                             | 不明
                   div.l-histories-list-card-right-bottom-right
@@ -51,5 +55,5 @@ ul#l-histories-list.l-histories-list
         div.l-histories-list-card-remove-container
           button.l-histories-list-card-remove
             div.l-histories-list-card-remove-svg(href=history.url)
-              include ../../images/popup/trash.svg
+              include ../images/popup/trash.svg
         div.l-histories-list-card-shadow

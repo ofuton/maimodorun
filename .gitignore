@@ -2,3 +2,5 @@
 node_modules/
 dist/
 *.zip
+src/js/templates/*.js
+.DS_Store

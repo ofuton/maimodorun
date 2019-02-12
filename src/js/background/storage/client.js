@@ -1,5 +1,4 @@
-const Storage = class {
-
+export default class Storage {
     constructor(options = {}) {
         this.options = options;
         this.storeOptions = this.options.store || {};
@@ -122,4 +121,4 @@ const Storage = class {
     removeItem(key) {
         return this._run('delete', key, 'readwrite');
     }
-};
+}

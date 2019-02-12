@@ -131,9 +131,9 @@
     display: inline-block;
     position: relative;
     min-width: 5rem;
-    height: 2rem;
-    padding: .2rem .7rem .25rem 1.9rem;
-    font-size: .8rem;
+    min-height: 2rem;
+    padding: .3rem .7rem .25rem 1.9rem;
+    font-size: .72rem;
     font-family: "Noto Sans JP", sans-serif;
     font-weight: 500;
     color: var(--popup-card-tag-color);
