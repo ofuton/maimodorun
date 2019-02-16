@@ -23,7 +23,7 @@ export default class BaseHandler {
         this.editorField = '.ocean-ui-editor-field';
         this.submitClass = '.ocean-ui-comments-commentform-submit';
         this.cancelClass = '.ocean-ui-comments-commentform-cancel';
-        this.maimodorunButton = '.maimodorun-button';
+        this.maimodorunButton = '.ocean-ui-editor-toolbar-maimodorun';
         this.commentsCommentForm = '.ocean-ui-comments-commentform';
     }
 

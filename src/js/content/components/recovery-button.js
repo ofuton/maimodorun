@@ -14,7 +14,7 @@ const insertToolBarPartition = toolbar => {
 };
 
 const insertRecoveryButton = baseElement => {
-    if (isExists(baseElement, '.maimodorun-button')) {
+    if (isExists(baseElement, '.ocean-ui-editor-toolbar-maimodorun')) {
         return;
     }
 
