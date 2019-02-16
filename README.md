@@ -16,7 +16,7 @@ Maimodorun is a chrome extension to recover unsaved texts on Rich Text Editor(RT
 
 ## Demo
 
-![Demo image](./figs/maimodorun.gif)
+![Demo image](./figs/maimodorun-demo.gif)
 
 ## Supported Pages [6/6]
 
