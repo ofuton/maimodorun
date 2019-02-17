@@ -47,8 +47,8 @@ export default class BaseHandler {
     bindCancel(type, baseElement) {
         const cancelElement = baseElement.find(this.cancelClass);
         // Avoid to register dupilicated event handlers
-        cancelElement.off('click.maimodorun');
-        cancelElement.on('click.maimodorun', this.onCancel(type, baseElement));
+        cancelElement.off('mousedown.maimodorun');
+        cancelElement.on('mousedown.maimodorun', this.onCancel(type, baseElement));
     }
 
     bindRecover(type, baseElement) {
