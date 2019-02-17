@@ -44,11 +44,11 @@ export default class BaseHandler {
         submitElement.on('click.maimodorun', this.onSubmit(type, baseElement));
     }
 
-    bindCancel(baseElement) {
+    bindCancel(type, baseElement) {
         const cancelElement = baseElement.find(this.cancelClass);
         // Avoid to register dupilicated event handlers
         cancelElement.off('click.maimodorun');
-        cancelElement.on('click.maimodorun', this.onCancel(baseElement));
+        cancelElement.on('click.maimodorun', this.onCancel(type, baseElement));
     }
 
     bindRecover(type, baseElement) {
@@ -90,7 +90,7 @@ export default class BaseHandler {
 
             await sleep(10);
             this.bindSubmit(type, baseElement);
-            this.bindCancel(baseElement);
+            this.bindCancel(type, baseElement);
             this.displayRecoveryButton(type, baseElement);
 
             this.formObservers[type].observe(baseElement.find(this.editorField)[0], {
@@ -107,17 +107,23 @@ export default class BaseHandler {
             try {
                 this.debounceFunc.clear();
                 await this.saveFormText(type, baseElement);
+                removeAutoSavedSign(baseElement);
             } catch(error) {
                 this.handleSaveError(baseElement, error);
             }
         };
     }
 
-    onCancel(baseElement) {
+    onCancel(type, baseElement) {
         return async () => {
-            this.debounceFunc.clear();
-            removeAutoSavedSign(baseElement);
-            // FIXME: recovery-button を消す必要あり
+            try {
+                this.debounceFunc.clear();
+                await this.saveFormText(type, baseElement);
+                removeAutoSavedSign(baseElement);
+                // FIXME: recovery-button を消す必要あり
+            } catch(error) {
+                this.handleSaveError(baseElement, error);
+            }
         };
     }
 
