@@ -40,8 +40,8 @@ export default class BaseHandler {
     bindSubmit(type, baseElement) {
         const submitElement = baseElement.find(this.submitClass);
         // Avoid to register dupilicated event handlers
-        submitElement.off('mousedown.maimodorun');
-        submitElement.on('mousedown.maimodorun', this.onSubmit(type, baseElement));
+        submitElement.off('click.maimodorun');
+        submitElement.on('click.maimodorun', this.onSubmit(type, baseElement));
     }
 
     bindCancel(type, baseElement) {
@@ -54,8 +54,8 @@ export default class BaseHandler {
     bindRecover(type, baseElement) {
         const recoverElement = baseElement.find(this.maimodorunButton);
         // Avoid to register dupilicated event handlers
-        recoverElement.off('mousedown.maimodorun');
-        recoverElement.on('mousedown.maimodorun', this.onRecover(type, baseElement));
+        recoverElement.off('click.maimodorun');
+        recoverElement.on('click.maimodorun', this.onRecover(type, baseElement));
     }
 
     async displayRecoveryButton(type, baseElement) {
