@@ -41,7 +41,8 @@ gulp.task('js', () => {
             filename: '[name].js'
         },
         resolve: {
-            extensions: [ '.js' ],
+            // .pjs files are created from pug templates.
+            extensions: [ '.js', '.pjs' ],
             modules: [ scripts, 'node_modules' ]
         },
     };
@@ -110,7 +111,7 @@ gulp.task('manifest', () => {
 
 gulp.task('clean:templates', () => {
     const del = require('del');
-    return del('./src/js/templates/*.js', { force:true });
+    return del('./src/js/templates/*.pjs', { force:true });
 });
 
 gulp.task('clean:dist', () => {

@@ -23,7 +23,7 @@ export default class BaseHandler {
         this.editorField = '.ocean-ui-editor-field';
         this.submitClass = '.ocean-ui-comments-commentform-submit';
         this.cancelClass = '.ocean-ui-comments-commentform-cancel';
-        this.maimodorunButton = '.maimodorun-button';
+        this.maimodorunButton = '.ocean-ui-editor-toolbar-maimodorun';
         this.commentsCommentForm = '.ocean-ui-comments-commentform';
     }
 
@@ -40,22 +40,22 @@ export default class BaseHandler {
     bindSubmit(type, baseElement) {
         const submitElement = baseElement.find(this.submitClass);
         // Avoid to register dupilicated event handlers
-        submitElement.off('mousedown.maimodorun');
-        submitElement.on('mousedown.maimodorun', this.onSubmit(type, baseElement));
+        submitElement.off('click.maimodorun');
+        submitElement.on('click.maimodorun', this.onSubmit(type, baseElement));
     }
 
-    bindCancel(baseElement) {
+    bindCancel(type, baseElement) {
         const cancelElement = baseElement.find(this.cancelClass);
         // Avoid to register dupilicated event handlers
         cancelElement.off('mousedown.maimodorun');
-        cancelElement.on('mousedown.maimodorun', this.onCancel(baseElement));
+        cancelElement.on('mousedown.maimodorun', this.onCancel(type, baseElement));
     }
 
     bindRecover(type, baseElement) {
         const recoverElement = baseElement.find(this.maimodorunButton);
         // Avoid to register dupilicated event handlers
-        recoverElement.off('mousedown.maimodorun');
-        recoverElement.on('mousedown.maimodorun', this.onRecover(type, baseElement));
+        recoverElement.off('click.maimodorun');
+        recoverElement.on('click.maimodorun', this.onRecover(type, baseElement));
     }
 
     async displayRecoveryButton(type, baseElement) {
@@ -90,7 +90,7 @@ export default class BaseHandler {
 
             await sleep(10);
             this.bindSubmit(type, baseElement);
-            this.bindCancel(baseElement);
+            this.bindCancel(type, baseElement);
             this.displayRecoveryButton(type, baseElement);
 
             this.formObservers[type].observe(baseElement.find(this.editorField)[0], {
@@ -107,17 +107,23 @@ export default class BaseHandler {
             try {
                 this.debounceFunc.clear();
                 await this.saveFormText(type, baseElement);
+                removeAutoSavedSign(baseElement);
             } catch(error) {
                 this.handleSaveError(baseElement, error);
             }
         };
     }
 
-    onCancel(baseElement) {
+    onCancel(type, baseElement) {
         return async () => {
-            this.debounceFunc.clear();
-            removeAutoSavedSign(baseElement);
-            // FIXME: recovery-button を消す必要あり
+            try {
+                this.debounceFunc.clear();
+                await this.saveFormText(type, baseElement);
+                removeAutoSavedSign(baseElement);
+                // FIXME: recovery-button を消す必要あり
+            } catch(error) {
+                this.handleSaveError(baseElement, error);
+            }
         };
     }
 

@@ -1,16 +1,17 @@
 import $ from 'jquery';
 import moment from 'moment';
 
-const sleep = ms => new Promise((resolve) => setTimeout(resolve, ms));
+const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
-const getBytes = string => encodeURIComponent(string).replace(/%../g,"x").length;
+const getBytes = string =>
+    encodeURIComponent(string).replace(/%../g, 'x').length;
 
 const hasAnyContents = element => {
-    if (element.is('img') || element.text().trim() !== "") return true;
+    if (element.is('img') || element.text().trim() !== '') return true;
 
     let flag = false;
     element.children().each((index, child) => {
-        if (flag = hasAnyContents($(child))) return false;  // false を返すと break
+        if ((flag = hasAnyContents($(child)))) return false; // false を返すと break
     });
 
     return flag;
@@ -20,7 +21,7 @@ const waitUntilDisplay = className => {
     return new Promise(resolve => {
         const setIntervalId = setInterval(() => {
             const target = $(className);
-            if(target.length > 0) {
+            if (target.length > 0) {
                 clearInterval(setIntervalId);
                 resolve();
             }
@@ -34,13 +35,13 @@ const unixtimeToDate = unixtime => {
     return m.fromNow();
 };
 
-const filterHTML = string => string.replace(/<("[^"]*"|'[^']*'|[^'">])*>/g,'');
+const filterHTML = string => string.replace(/<("[^"]*"|'[^']*'|[^'">])*>/g, '');
 
 // FIXME: IndexedDB からデータを取ってくる際にソートすればこのメソッドは不必要
 const sortToDescendingOrderUnixtime = items => {
     items.sort((a, b) => {
-        if(a.timestamp > b.timestamp) return -1;
-        if(a.timestamp < b.timestamp) return 1;
+        if (a.timestamp > b.timestamp) return -1;
+        if (a.timestamp < b.timestamp) return 1;
         return 0;
     });
 };
