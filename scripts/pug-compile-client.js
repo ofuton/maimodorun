@@ -17,7 +17,7 @@ const compileRecoveryButton = () => {
             module: true,
             compileDebug: false
         });
-    fs.writeFileSync('./src/js/templates/recovery-button.js', recoveryButtonTemplate);
+    fs.writeFileSync('./src/js/templates/recovery-button.pjs', recoveryButtonTemplate);
 };
 
 const compileAutoSavedSign = () => {
@@ -28,7 +28,7 @@ const compileAutoSavedSign = () => {
             module: true,
             compileDebug: false
         });
-    fs.writeFileSync('./src/js/templates/auto-saved-sign.js', autoSavedSignTemplate);
+    fs.writeFileSync('./src/js/templates/auto-saved-sign.pjs', autoSavedSignTemplate);
 };
 
 const compileFailedToSaveSign = () => {
@@ -39,7 +39,7 @@ const compileFailedToSaveSign = () => {
             module: true,
             compileDebug: false
         });
-    fs.writeFileSync('./src/js/templates/failed-to-save-sign.js', failedToSaveSignTemplate);
+    fs.writeFileSync('./src/js/templates/failed-to-save-sign.pjs', failedToSaveSignTemplate);
 };
 
 const compileHistoriesTemplate = () => {
@@ -51,7 +51,7 @@ const compileHistoriesTemplate = () => {
             compileDebug: false
         }
     );
-    fs.writeFileSync('./src/js/templates/histories.js', historiesTemplate);
+    fs.writeFileSync('./src/js/templates/histories.pjs', historiesTemplate);
 };
 
 const compileHistoryEmptyTemplate = () => {
@@ -63,7 +63,7 @@ const compileHistoryEmptyTemplate = () => {
             compileDebug: false
         }
     );
-    fs.writeFileSync('./src/js/templates/history-empty.js', historyEmptyTemplate);
+    fs.writeFileSync('./src/js/templates/history-empty.pjs', historyEmptyTemplate);
 };
 
 const compileClient = () => {
