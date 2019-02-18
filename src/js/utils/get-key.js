@@ -12,7 +12,4 @@ const getReplyKeySuffix = baseElement => {
     return matches ? `/${matches[1]}` : '';
 };
 
-export {
-    getBaseKey,
-    getReplyKeySuffix
-};
+export { getBaseKey, getReplyKeySuffix };

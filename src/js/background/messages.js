@@ -6,5 +6,5 @@ export default {
     STORAGE_REMOVE: 'storage.remove',
     STORAGE_RECOVERY: 'storage.recovery',
 
-    STATUS_OK: 'OK'
+    STATUS_OK: 'OK',
 };

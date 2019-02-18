@@ -11,9 +11,10 @@ const isRecord = (pathName, hashName) => {
     return isAppPath(pathName) && includeRecordId(hashName);
 };
 
-const isAppPath = (pathName) => /^k\/\d+\/show$/.test(pathName);
+const isAppPath = pathName => /^k\/\d+\/show$/.test(pathName);
 
-const includeRecordId = (hashName) => parseQuery(hashName).hasOwnProperty('record');
+const includeRecordId = hashName =>
+    parseQuery(hashName).hasOwnProperty('record');
 
 const detectPage = () => {
     const pathName = getPathName();

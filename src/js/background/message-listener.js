@@ -8,34 +8,36 @@ export default class MessageListener {
     }
 
     run() {
-        chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-            switch (request.type) {
-            case messages.STORAGE_INIT:
-                this.initStorage(sendResponse);
-                break;
-            case messages.STORAGE_LOAD:
-                this.loadFromStorage(request, sendResponse);
-                break;
-            case messages.STORAGE_STORE:
-                this.storeRequest(request, sendResponse);
-                break;
-            case messages.STORAGE_LOAD_ALL:
-                this.loadAllFromStorage(request, sendResponse);
-                break;
-            case messages.STORAGE_REMOVE:
-                // FIXME: 削除したら対応するタブに消したことを通知する
-                this.removeFromStorage(request, sendResponse);
-                break;
-            case messages.STORAGE_RECOVERY:
-                this.recoveryWithNewTab(request, sendResponse);
-                break;
-            default:
-                sendResponse({ status: 'Failed' });
-                break;
-            }
+        chrome.runtime.onMessage.addListener(
+            (request, sender, sendResponse) => {
+                switch (request.type) {
+                    case messages.STORAGE_INIT:
+                        this.initStorage(sendResponse);
+                        break;
+                    case messages.STORAGE_LOAD:
+                        this.loadFromStorage(request, sendResponse);
+                        break;
+                    case messages.STORAGE_STORE:
+                        this.storeRequest(request, sendResponse);
+                        break;
+                    case messages.STORAGE_LOAD_ALL:
+                        this.loadAllFromStorage(request, sendResponse);
+                        break;
+                    case messages.STORAGE_REMOVE:
+                        // FIXME: 削除したら対応するタブに消したことを通知する
+                        this.removeFromStorage(request, sendResponse);
+                        break;
+                    case messages.STORAGE_RECOVERY:
+                        this.recoveryWithNewTab(request, sendResponse);
+                        break;
+                    default:
+                        sendResponse({ status: 'Failed' });
+                        break;
+                }
 
-            return true;
-        });
+                return true;
+            },
+        );
     }
 
     async initStorage(sendResponse) {
@@ -53,7 +55,7 @@ export default class MessageListener {
             title: request.title,
             timestamp: request.timestamp,
             coverImageUrl: request.coverImageUrl,
-            contents: request.contents
+            contents: request.contents,
         };
 
         sendResponse(await this.commandStorage.store(value));
