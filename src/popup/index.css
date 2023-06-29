@@ -1,0 +1,17 @@
+@import "reboot.css";
+@import "font.css";
+@import "variable.css";
+
+html, body{
+    min-height: 100%;
+    height: 100%;
+}
+
+html {
+    background-color: var(--popup-body-background-color);
+}
+
+body {
+    min-width: var(--popup-body-width);
+    background-color: transparent;
+}
