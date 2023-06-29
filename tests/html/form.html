@@ -1,0 +1,499 @@
+<div id="root-form" class="ocean-ui-comments-commentform ocean-ui-comments-commentform-open" aria-expanded="true">
+    <form class="ocean-ui-comments-commentform-form">
+        <div class="ocean-ui-comments-commentform-textarea-wrap"><textarea
+                class="ocean-ui-comments-commentform-textarea">投稿する</textarea></div>
+        <div>
+            <div class="ocean-ui-comments-commentform-editor">
+                <div class="ocean-ui-editor ocean-ui-editor-seamless" style="width: 630px;">
+                    <div id=":bt.toolbar" class="ocean-ui-editor-toolbar">
+                        <div class="goog-toolbar goog-toolbar-horizontal" role="toolbar" tabindex="-1"
+                             style="user-select: none;">
+                            <div class="goog-inline-block goog-toolbar-button ocean-ui-editor-toolbar-mention"
+                                 title="宛先を指定する" role="button" id="+oceanMention" style="user-select: none;">
+                                <div class="goog-inline-block goog-toolbar-button-outer-box" style="user-select: none;">
+                                    <div class="goog-inline-block goog-toolbar-button-inner-box"
+                                         style="user-select: none;">
+                                        <div class="ocean-ui-editor-toolbar-mention-button" style="user-select: none;">
+                                            宛先指定
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="goog-inline-block goog-toolbar-button" title="ファイルを添付する" role="button"
+                                 id="+cybozuAttachFileCommand" style="user-select: none;">
+                                <div class="goog-inline-block goog-toolbar-button-outer-box" style="user-select: none;">
+                                    <div class="goog-inline-block goog-toolbar-button-inner-box"
+                                         style="user-select: none;">
+                                        <div class="ocean-ui-editor-toolbar-fileAttach-button"
+                                             style="user-select: none;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="goog-inline-block goog-toolbar-button" title="絵文字" role="button"
+                                 id="+OceanPickupEmoji" style="user-select: none;">
+                                <div class="goog-inline-block goog-toolbar-button-outer-box" style="user-select: none;">
+                                    <div class="goog-inline-block goog-toolbar-button-inner-box"
+                                         style="user-select: none;">
+                                        <div class="ocean-ui-editor-toolbar-emoji-button"
+                                             style="user-select: none;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="goog-inline-block goog-toolbar-button" title="太字" role="button"
+                                 aria-pressed="false" id="+bold" style="user-select: none;">
+                                <div class="goog-inline-block goog-toolbar-button-outer-box" style="user-select: none;">
+                                    <div class="goog-inline-block goog-toolbar-button-inner-box"
+                                         style="user-select: none;">
+                                        <div class="tr-icon tr-bold" style="user-select: none;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="goog-inline-block goog-toolbar-button" title="斜体" role="button"
+                                 aria-pressed="false" id="+italic" style="user-select: none;">
+                                <div class="goog-inline-block goog-toolbar-button-outer-box" style="user-select: none;">
+                                    <div class="goog-inline-block goog-toolbar-button-inner-box"
+                                         style="user-select: none;">
+                                        <div class="tr-icon tr-italic" style="user-select: none;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="goog-inline-block goog-toolbar-button" title="下線" role="button"
+                                 aria-pressed="false" id="+underline" style="user-select: none;">
+                                <div class="goog-inline-block goog-toolbar-button-outer-box" style="user-select: none;">
+                                    <div class="goog-inline-block goog-toolbar-button-inner-box"
+                                         style="user-select: none;">
+                                        <div class="tr-icon tr-underline" style="user-select: none;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="goog-inline-block goog-toolbar-menu-button goog-toolbar-color-menu-button"
+                                 title="文字色" role="button" aria-expanded="false" aria-haspopup="false"
+                                 id="+foreColor" style="user-select: none;">
+                                <div class="goog-inline-block goog-toolbar-menu-button-outer-box"
+                                     style="user-select: none;">
+                                    <div class="goog-inline-block goog-toolbar-menu-button-inner-box"
+                                         style="user-select: none;">
+                                        <div class="goog-inline-block goog-toolbar-menu-button-caption"
+                                             style="user-select: none;">
+                                            <div class="goog-color-menu-button-indicator"
+                                                 style="border-bottom-color: rgb(51, 51, 51); user-select: none;">
+                                                <div class="tr-icon tr-foreColor" style="user-select: none;"></div>
+                                            </div>
+                                        </div>
+                                        <div class="goog-inline-block goog-toolbar-menu-button-dropdown"
+                                             style="user-select: none;">&nbsp;
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="goog-inline-block goog-toolbar-menu-button goog-toolbar-color-menu-button"
+                                 title="文字背景色" role="button" aria-expanded="false" aria-haspopup="false"
+                                 id="+backColor" style="user-select: none;">
+                                <div class="goog-inline-block goog-toolbar-menu-button-outer-box"
+                                     style="user-select: none;">
+                                    <div class="goog-inline-block goog-toolbar-menu-button-inner-box"
+                                         style="user-select: none;">
+                                        <div class="goog-inline-block goog-toolbar-menu-button-caption"
+                                             style="user-select: none;">
+                                            <div class="goog-color-menu-button-indicator"
+                                                 style="border-bottom-color: rgb(255, 255, 255); user-select: none;">
+                                                <div class="tr-icon tr-backColor" style="user-select: none;"></div>
+                                            </div>
+                                        </div>
+                                        <div class="goog-inline-block goog-toolbar-menu-button-dropdown"
+                                             style="user-select: none;">&nbsp;
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="goog-inline-block goog-toolbar-menu-button tr-fontSize goog-toolbar-select"
+                                 title="文字サイズ" role="listbox" aria-expanded="false" aria-haspopup="true"
+                                 aria-activedescendant=":by" id="+fontSize" style="user-select: none;">
+                                <div class="goog-inline-block goog-toolbar-menu-button-outer-box"
+                                     style="user-select: none;">
+                                    <div class="goog-inline-block goog-toolbar-menu-button-inner-box"
+                                         style="user-select: none;">
+                                        <div class="goog-inline-block goog-toolbar-menu-button-caption" id=":by"
+                                             role="option" aria-selected="true" aria-setsize="4" aria-posinset="2"
+                                             style="user-select: none;">普通
+                                        </div>
+                                        <div class="goog-inline-block goog-toolbar-menu-button-dropdown"
+                                             style="user-select: none;">&nbsp;
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="goog-inline-block goog-toolbar-button" title="リンク" role="button" id="+link"
+                                 style="user-select: none;">
+                                <div class="goog-inline-block goog-toolbar-button-outer-box" style="user-select: none;">
+                                    <div class="goog-inline-block goog-toolbar-button-inner-box"
+                                         style="user-select: none;">
+                                        <div class="ocean-ui-editor-toolbar-link-button"
+                                             style="user-select: none;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="goog-inline-block goog-toolbar-button goog-toolbar-button-disabled"
+                                 title="元に戻す" role="button" id="+undo" style="user-select: none;"
+                                 aria-disabled="true">
+                                <div class="goog-inline-block goog-toolbar-button-outer-box" style="user-select: none;">
+                                    <div class="goog-inline-block goog-toolbar-button-inner-box"
+                                         style="user-select: none;">
+                                        <div class="tr-icon tr-undo" style="user-select: none;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="goog-inline-block goog-toolbar-button goog-toolbar-button-disabled"
+                                 title="やり直す" role="button" id="+redo" style="user-select: none;" aria-disabled="true">
+                                <div class="goog-inline-block goog-toolbar-button-outer-box" style="user-select: none;">
+                                    <div class="goog-inline-block goog-toolbar-button-inner-box"
+                                         style="user-select: none;">
+                                        <div class="tr-icon tr-redo" style="user-select: none;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="goog-inline-block goog-toolbar-button" title="番号なしリスト" role="button"
+                                 aria-pressed="false" id="+insertUnorderedList" style="user-select: none;">
+                                <div class="goog-inline-block goog-toolbar-button-outer-box" style="user-select: none;">
+                                    <div class="goog-inline-block goog-toolbar-button-inner-box"
+                                         style="user-select: none;">
+                                        <div class="tr-icon tr-insertUnorderedList" style="user-select: none;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="goog-inline-block goog-toolbar-button" title="番号付きリスト" role="button"
+                                 aria-pressed="false" id="+insertOrderedList" style="user-select: none;">
+                                <div class="goog-inline-block goog-toolbar-button-outer-box" style="user-select: none;">
+                                    <div class="goog-inline-block goog-toolbar-button-inner-box"
+                                         style="user-select: none;">
+                                        <div class="tr-icon tr-insertOrderedList" style="user-select: none;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="goog-inline-block goog-toolbar-button goog-toolbar-button-checked" title="左揃え"
+                                 role="button" aria-pressed="true" id="+justifyLeft" style="user-select: none;">
+                                <div class="goog-inline-block goog-toolbar-button-outer-box" style="user-select: none;">
+                                    <div class="goog-inline-block goog-toolbar-button-inner-box"
+                                         style="user-select: none;">
+                                        <div class="tr-icon tr-justifyLeft" style="user-select: none;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="goog-inline-block goog-toolbar-button" title="中央揃え" role="button"
+                                 aria-pressed="false" id="+justifyCenter" style="user-select: none;">
+                                <div class="goog-inline-block goog-toolbar-button-outer-box" style="user-select: none;">
+                                    <div class="goog-inline-block goog-toolbar-button-inner-box"
+                                         style="user-select: none;">
+                                        <div class="tr-icon tr-justifyCenter" style="user-select: none;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="goog-inline-block goog-toolbar-button goog-toolbar-button-right-border"
+                                 title="フォーマット削除" role="button" id="+removeFormat" style="user-select: none;">
+                                <div class="goog-inline-block goog-toolbar-button-outer-box" style="user-select: none;">
+                                    <div class="goog-inline-block goog-toolbar-button-inner-box"
+                                         style="user-select: none;">
+                                        <div class="tr-icon tr-removeFormat" style="user-select: none;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id=":bt.field" class="ocean-ui-editor-field editable ocean-editor-seamless" g_editable="true"
+                         role="textbox" contenteditable="true"
+                         style="box-sizing: border-box; overflow-y: hidden; min-height: 100px;"
+                         data-dl-input-translation="true"><br></div>
+                    <div class="textarea-resize-cybozu"></div>
+                    <deepl-inline-translate style="z-index: 1999999999;"></deepl-inline-translate>
+                </div>
+            </div>
+        </div>
+        <button class="ocean-ui-comments-commentform-cancel" type="reset" tabindex="1"><span>キャンセル</span></button>
+        <button class="ocean-ui-comments-commentform-submit" type="submit" tabindex="0"><span>書き込む</span></button>
+    </form>
+</div>
+<div id="nested-form" class="ocean-ui-comments-commentbase ocean-ui-comments-post ocean-ui-comments-post-id-3">
+    <div class="ocean-ui-comments-commentbase-entity"><a href="/k/#/people/user/emiksk">
+        <div class="ocean-ui-comments-commentbase-usericon"
+             style="background-image:url(https://example.cybozu.com/background)"></div>
+    </a>
+        <div class="ocean-ui-comments-commentbase-body">
+            <div class="ocean-ui-comments-commentbase-head"><a class="ocean-ui-comments-commentbase-user"
+                                                               href="/k/#/people/user/emiksk"><span
+                    class="ocean-ui-comments-commentbase-name">江見</span></a><span
+                    class="ocean-ui-comments-commentbase-time"><a href="https://example.cybozu.com/k/#/space/1/thread/2/3"
+                                                                  title="2023/6/23 10:48">6/23 10:48</a></span></div>
+            <div class="ocean-ui-comments-commentbase-contents"><span class="ocean-ui-comments-commentbase-text"><div>Test</div></span>
+            </div>
+            <div class="ocean-ui-comments-commentbase-bar">
+                <ul class="ocean-ui-comments-commentbase-actions">
+                    <li><a class="ocean-ui-comments-commentbase-like-count" style="user-select: none;"><span
+                            class="ocean-ui-comments-commentbase-like-count-icon"
+                            style="user-select: none;"></span><span
+                            class="ocean-ui-comments-commentbase-like-count-text"
+                            style="display: none; user-select: none;"></span></a><a
+                            class="ocean-ui-comments-commentbase-like"
+                            style="min-width: 1px; user-select: none;">いいね！</a></li>
+                    <li><a class="ocean-ui-comments-commentbase-comment" style="user-select: none;">返信</a></li>
+                    <li><a class="ocean-ui-comments-commentbase-commentall"
+                           style="user-select: none; opacity: 0;">全員に返信</a></li>
+                    <li><a class="ocean-ui-comments-commentbase-action" style="user-select: none; opacity: 0;">アクション</a>
+                    </li>
+                    <li><a class="ocean-ui-comments-commentbase-link" style="user-select: none; opacity: 0;">リンク</a>
+                    </li>
+                    <li><a class="ocean-ui-comments-commentbase-delete" style="user-select: none; opacity: 0;">削除</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="ocean-ui-comments-post-child">
+        <div><a class="ocean-ui-comments-post-morecomment" style="display: none;"></a></div>
+        <div class="ocean-ui-comments-post-wrapper">
+            <div class="ocean-ui-comments-post-commentholder"></div>
+            <div class="ocean-ui-comments-commentform" aria-expanded="false" style="display: none;">
+                <form class="ocean-ui-comments-commentform-form">
+                    <div class="ocean-ui-comments-commentform-textarea-wrap"><textarea
+                            class="ocean-ui-comments-commentform-textarea">コメントする</textarea></div>
+                    <div>
+                        <div class="ocean-ui-comments-commentform-editor">
+                            <div class="ocean-ui-editor ocean-ui-editor-seamless" style="width: 986px;">
+                                <div id=":4y.toolbar" class="ocean-ui-editor-toolbar">
+                                    <div class="goog-toolbar goog-toolbar-horizontal" role="toolbar" tabindex="-1"
+                                         style="user-select: none;">
+                                        <div class="goog-inline-block goog-toolbar-button ocean-ui-editor-toolbar-mention"
+                                             title="宛先を指定する" role="button" id="+oceanMention"
+                                             style="user-select: none;">
+                                            <div class="goog-inline-block goog-toolbar-button-outer-box"
+                                                 style="user-select: none;">
+                                                <div class="goog-inline-block goog-toolbar-button-inner-box"
+                                                     style="user-select: none;">
+                                                    <div class="ocean-ui-editor-toolbar-mention-button"
+                                                         style="user-select: none;">宛先指定
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="goog-inline-block goog-toolbar-button" title="ファイルを添付する"
+                                             role="button" id="+cybozuAttachFileCommand" style="user-select: none;">
+                                            <div class="goog-inline-block goog-toolbar-button-outer-box"
+                                                 style="user-select: none;">
+                                                <div class="goog-inline-block goog-toolbar-button-inner-box"
+                                                     style="user-select: none;">
+                                                    <div class="ocean-ui-editor-toolbar-fileAttach-button"
+                                                         style="user-select: none;"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="goog-inline-block goog-toolbar-button" title="絵文字" role="button"
+                                             id="+OceanPickupEmoji" style="user-select: none;">
+                                            <div class="goog-inline-block goog-toolbar-button-outer-box"
+                                                 style="user-select: none;">
+                                                <div class="goog-inline-block goog-toolbar-button-inner-box"
+                                                     style="user-select: none;">
+                                                    <div class="ocean-ui-editor-toolbar-emoji-button"
+                                                         style="user-select: none;"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="goog-inline-block goog-toolbar-button" title="太字" role="button"
+                                             aria-pressed="false" id="+bold" style="user-select: none;">
+                                            <div class="goog-inline-block goog-toolbar-button-outer-box"
+                                                 style="user-select: none;">
+                                                <div class="goog-inline-block goog-toolbar-button-inner-box"
+                                                     style="user-select: none;">
+                                                    <div class="tr-icon tr-bold" style="user-select: none;"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="goog-inline-block goog-toolbar-button" title="斜体" role="button"
+                                             aria-pressed="false" id="+italic" style="user-select: none;">
+                                            <div class="goog-inline-block goog-toolbar-button-outer-box"
+                                                 style="user-select: none;">
+                                                <div class="goog-inline-block goog-toolbar-button-inner-box"
+                                                     style="user-select: none;">
+                                                    <div class="tr-icon tr-italic" style="user-select: none;"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="goog-inline-block goog-toolbar-button" title="下線" role="button"
+                                             aria-pressed="false" id="+underline" style="user-select: none;">
+                                            <div class="goog-inline-block goog-toolbar-button-outer-box"
+                                                 style="user-select: none;">
+                                                <div class="goog-inline-block goog-toolbar-button-inner-box"
+                                                     style="user-select: none;">
+                                                    <div class="tr-icon tr-underline" style="user-select: none;"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="goog-inline-block goog-toolbar-menu-button goog-toolbar-color-menu-button"
+                                             title="文字色" role="button" aria-expanded="false" aria-haspopup="false"
+                                             id="+foreColor" style="user-select: none;">
+                                            <div class="goog-inline-block goog-toolbar-menu-button-outer-box"
+                                                 style="user-select: none;">
+                                                <div class="goog-inline-block goog-toolbar-menu-button-inner-box"
+                                                     style="user-select: none;">
+                                                    <div class="goog-inline-block goog-toolbar-menu-button-caption"
+                                                         style="user-select: none;">
+                                                        <div class="goog-color-menu-button-indicator"
+                                                             style="border-bottom-color: rgb(51, 51, 51); user-select: none;">
+                                                            <div class="tr-icon tr-foreColor"
+                                                                 style="user-select: none;"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="goog-inline-block goog-toolbar-menu-button-dropdown"
+                                                         style="user-select: none;">&nbsp;
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="goog-inline-block goog-toolbar-menu-button goog-toolbar-color-menu-button"
+                                             title="文字背景色" role="button" aria-expanded="false"
+                                             aria-haspopup="false" id="+backColor" style="user-select: none;">
+                                            <div class="goog-inline-block goog-toolbar-menu-button-outer-box"
+                                                 style="user-select: none;">
+                                                <div class="goog-inline-block goog-toolbar-menu-button-inner-box"
+                                                     style="user-select: none;">
+                                                    <div class="goog-inline-block goog-toolbar-menu-button-caption"
+                                                         style="user-select: none;">
+                                                        <div class="goog-color-menu-button-indicator"
+                                                             style="border-bottom-color: rgb(255, 255, 255); user-select: none;">
+                                                            <div class="tr-icon tr-backColor"
+                                                                 style="user-select: none;"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="goog-inline-block goog-toolbar-menu-button-dropdown"
+                                                         style="user-select: none;">&nbsp;
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="goog-inline-block goog-toolbar-menu-button tr-fontSize goog-toolbar-select"
+                                             title="文字サイズ" role="listbox" aria-expanded="false" aria-haspopup="true"
+                                             aria-activedescendant=":53" id="+fontSize" style="user-select: none;">
+                                            <div class="goog-inline-block goog-toolbar-menu-button-outer-box"
+                                                 style="user-select: none;">
+                                                <div class="goog-inline-block goog-toolbar-menu-button-inner-box"
+                                                     style="user-select: none;">
+                                                    <div class="goog-inline-block goog-toolbar-menu-button-caption"
+                                                         id=":53" role="option" aria-selected="true" aria-setsize="4"
+                                                         aria-posinset="2" style="user-select: none;">普通
+                                                    </div>
+                                                    <div class="goog-inline-block goog-toolbar-menu-button-dropdown"
+                                                         style="user-select: none;">&nbsp;
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="goog-inline-block goog-toolbar-button" title="リンク" role="button"
+                                             id="+link" style="user-select: none;">
+                                            <div class="goog-inline-block goog-toolbar-button-outer-box"
+                                                 style="user-select: none;">
+                                                <div class="goog-inline-block goog-toolbar-button-inner-box"
+                                                     style="user-select: none;">
+                                                    <div class="ocean-ui-editor-toolbar-link-button"
+                                                         style="user-select: none;"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="goog-inline-block goog-toolbar-button" title="元に戻す" role="button"
+                                             id="+undo" style="user-select: none;" aria-disabled="false">
+                                            <div class="goog-inline-block goog-toolbar-button-outer-box"
+                                                 style="user-select: none;">
+                                                <div class="goog-inline-block goog-toolbar-button-inner-box"
+                                                     style="user-select: none;">
+                                                    <div class="tr-icon tr-undo" style="user-select: none;"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="goog-inline-block goog-toolbar-button goog-toolbar-button-disabled"
+                                             title="やり直す" role="button" id="+redo" style="user-select: none;"
+                                             aria-disabled="true">
+                                            <div class="goog-inline-block goog-toolbar-button-outer-box"
+                                                 style="user-select: none;">
+                                                <div class="goog-inline-block goog-toolbar-button-inner-box"
+                                                     style="user-select: none;">
+                                                    <div class="tr-icon tr-redo" style="user-select: none;"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="goog-inline-block goog-toolbar-button" title="番号なしリスト"
+                                             role="button" aria-pressed="false" id="+insertUnorderedList"
+                                             style="user-select: none;">
+                                            <div class="goog-inline-block goog-toolbar-button-outer-box"
+                                                 style="user-select: none;">
+                                                <div class="goog-inline-block goog-toolbar-button-inner-box"
+                                                     style="user-select: none;">
+                                                    <div class="tr-icon tr-insertUnorderedList"
+                                                         style="user-select: none;"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="goog-inline-block goog-toolbar-button" title="番号付きリスト"
+                                             role="button" aria-pressed="false" id="+insertOrderedList"
+                                             style="user-select: none;">
+                                            <div class="goog-inline-block goog-toolbar-button-outer-box"
+                                                 style="user-select: none;">
+                                                <div class="goog-inline-block goog-toolbar-button-inner-box"
+                                                     style="user-select: none;">
+                                                    <div class="tr-icon tr-insertOrderedList"
+                                                         style="user-select: none;"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="goog-inline-block goog-toolbar-button goog-toolbar-button-checked"
+                                             title="左揃え" role="button" aria-pressed="true" id="+justifyLeft"
+                                             style="user-select: none;">
+                                            <div class="goog-inline-block goog-toolbar-button-outer-box"
+                                                 style="user-select: none;">
+                                                <div class="goog-inline-block goog-toolbar-button-inner-box"
+                                                     style="user-select: none;">
+                                                    <div class="tr-icon tr-justifyLeft"
+                                                         style="user-select: none;"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="goog-inline-block goog-toolbar-button" title="中央揃え" role="button"
+                                             aria-pressed="false" id="+justifyCenter" style="user-select: none;">
+                                            <div class="goog-inline-block goog-toolbar-button-outer-box"
+                                                 style="user-select: none;">
+                                                <div class="goog-inline-block goog-toolbar-button-inner-box"
+                                                     style="user-select: none;">
+                                                    <div class="tr-icon tr-justifyCenter"
+                                                         style="user-select: none;"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="goog-inline-block goog-toolbar-button goog-toolbar-button-right-border"
+                                             title="フォーマット削除" role="button" id="+removeFormat"
+                                             style="user-select: none;">
+                                            <div class="goog-inline-block goog-toolbar-button-outer-box"
+                                                 style="user-select: none;">
+                                                <div class="goog-inline-block goog-toolbar-button-inner-box"
+                                                     style="user-select: none;">
+                                                    <div class="tr-icon tr-removeFormat"
+                                                         style="user-select: none;"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id=":4y.field" class="ocean-ui-editor-field editable ocean-editor-seamless"
+                                     g_editable="true" role="textbox" contenteditable="true"
+                                     style="box-sizing: border-box; overflow-y: hidden; min-height: 100px;"
+                                     data-dl-input-translation="true"><br></div>
+                                <div class="textarea-resize-cybozu"></div>
+                                <deepl-inline-translate style="z-index: 1999999999;"></deepl-inline-translate>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="ocean-ui-comments-commentform-cancel" type="reset" tabindex="1"><span>キャンセル</span>
+                    </button>
+                    <button class="ocean-ui-comments-commentform-submit" type="submit" tabindex="0"><span>返信</span>
+                    </button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

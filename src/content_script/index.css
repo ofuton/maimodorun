@@ -1,0 +1,38 @@
+/* === MAIMODORUN BUTTON AT TOP RIGHT OF FORM === */
+.ocean-ui-comments-commentform-maimodorun-button-wrap {
+  position: relative;
+}
+
+.maimodorun-button-in-top-right-of-form {
+  position: absolute;
+  top: 7px;
+  right: 8px;
+
+  width: 19px;
+  height: 19px;
+}
+
+/* === MAIMODORUN BUTTON IN FORM === */
+
+.goog-toolbar-button-inner-box-maimodorun {
+  color: #3498db;
+}
+
+.maimodorun-button-img {
+  width: 16px;
+  height: 16px;
+  padding: 3px 6px;
+  margin: 0;
+}
+
+.goog-toolbar-button-right-border {
+  border-right: 1px solid #e3e7e8;
+}
+
+/* === SAVED SIGN IN EDITOR FOOTER === */
+.maimodorun-saved-sign {
+  display: inline-block;
+  margin: 16px 0 16px 28px;
+  color: #888888;
+  font-size: 14px;
+}
