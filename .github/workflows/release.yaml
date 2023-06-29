@@ -23,7 +23,11 @@ jobs:
         run: echo "version=$(node -p "require('./package.json').version")" >> $GITHUB_OUTPUT
       - name: Create release
         run: gh release create v${{ steps.get_version.outputs.version }} -t v${{ steps.get_version.outputs.version }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Upload artifact
         run: |
           mv ./maimodorun.zip maimodorun-v${{ steps.get_version.outputs.version }}.zip
           gh release upload v${{ steps.get_version.outputs.version }} maimodorun-v${{ steps.get_version.outputs.version }}.zip
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
