@@ -20,7 +20,7 @@ jobs:
         run: npm run build
       - name: Get current version
         id: get_version
-        run: echo "version=$(node -p \"require('./package.json').version\")" >> $GITHUB_OUTPUT
+        run: echo "version=$(node -p "require('./package.json').version")" >> $GITHUB_OUTPUT
       - name: Create release
         run: gh release create v${{ steps.get_version.outputs.version }} -t v${{ steps.get_version.outputs.version }}
       - name: Upload artifact
