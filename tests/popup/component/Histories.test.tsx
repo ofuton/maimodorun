@@ -3,6 +3,7 @@ import { render, screen, waitFor } from '@testing-library/react'
 import { Histories } from '../../../src/popup/component/Histories.tsx'
 import userEvent from '@testing-library/user-event'
 import dayjs from 'dayjs'
+import '../i18n'
 
 describe('src/popup/component/Histories.tsx', () => {
   afterEach(() => {
@@ -42,8 +43,10 @@ describe('src/popup/component/Histories.tsx', () => {
     }
     render(<Histories {...props} />)
 
-    expect(screen.getByText('Example Title 1')).toBeInTheDocument()
-    expect(screen.getByText('Example Title 2')).toBeInTheDocument()
+    waitFor(() => {
+      expect(screen.getByText('Example Title 1')).toBeInTheDocument()
+      expect(screen.getByText('Example Title 2')).toBeInTheDocument()
+    })
 
     const trashButtons = document.querySelectorAll('.l-histories-list-card-remove')
 
@@ -91,7 +94,9 @@ describe('src/popup/component/Histories.tsx', () => {
     }
     render(<Histories {...props} />)
 
-    expect(screen.getByText('012345678901234567890...')).toBeInTheDocument()
+    waitFor(() => {
+      expect(screen.getByText('012345678901234567890...')).toBeInTheDocument()
+    })
   })
 
   it('本文が37文字より長い時', () => {

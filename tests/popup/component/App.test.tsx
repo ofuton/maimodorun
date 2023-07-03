@@ -3,6 +3,7 @@ import { render, screen, waitFor } from '@testing-library/react'
 import * as client from '../../../src/background/client.ts'
 import userEvent from '@testing-library/user-event'
 import { App } from '../../../src/popup/component/App.tsx'
+import '../i18n'
 
 describe('src/popup/component/Histories.tsx', () => {
   afterEach(() => {
