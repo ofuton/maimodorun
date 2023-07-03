@@ -90,7 +90,7 @@ const RecordCard: React.FC<RecordProps> = ({ record, clickTrashButtonHandler, re
                                     </div>
                                     <div className="l-histories-list-card-right-bottom-right">
                                         <div className="l-histories-list-card-right-bottom-right-time">
-                                            {fromNow(new Date())}
+                                            {fromNow(record.timestamp)}
                                         </div>
                                     </div>
                                 </div>
@@ -192,6 +192,6 @@ const RecordCardTag: React.FC<RecordCardTagProps> = ({ scope }) => {
   )
 }
 
-const fromNow = (date: Date): string => {
-  return dayjs(date).fromNow()
+const fromNow = (timestamp: number): string => {
+  return dayjs.unix(timestamp).fromNow()
 }
