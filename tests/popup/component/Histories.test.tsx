@@ -1,7 +1,8 @@
-import { afterEach, describe, expect, it, vi } from 'vitest'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { render, screen, waitFor } from '@testing-library/react'
 import { Histories } from '../../../src/popup/component/Histories.tsx'
 import userEvent from '@testing-library/user-event'
+import dayjs from 'dayjs'
 
 describe('src/popup/component/Histories.tsx', () => {
   afterEach(() => {
@@ -127,5 +128,76 @@ describe('src/popup/component/Histories.tsx', () => {
     render(<Histories {...props} />)
 
     expect(screen.getByText('tags will be removed')).toBeInTheDocument()
+  })
+
+  describe('fromNow()', () => {
+    beforeEach(() => {
+      vi.useFakeTimers()
+    })
+
+    afterEach(() => {
+      // restoring date after each test run
+      vi.useRealTimers()
+    })
+
+    it('数秒前', () => {
+      const now = 1234567890
+      vi.setSystemTime(dayjs.unix(now).toDate())
+      const props = {
+        histories: [{
+          scope: 'thread.root',
+          url: 'https://example.com/1',
+          title: 'Example Title',
+          iconUrl: 'https://example.com/icon',
+          timestamp: now - 5,
+          content: '<span>tags will be removed</span>'
+        }],
+        clickTrashButtonHandler: async (_: string) => {},
+        recoveryRecordHandler: async (_: string) => {}
+      }
+      render(<Histories {...props} />)
+
+      expect(screen.getByText('数秒前')).toBeInTheDocument()
+    })
+
+    it('5分前', () => {
+      const now = 1234567890
+      vi.setSystemTime(dayjs.unix(now).toDate())
+      const props = {
+        histories: [{
+          scope: 'thread.root',
+          url: 'https://example.com/1',
+          title: 'Example Title',
+          iconUrl: 'https://example.com/icon',
+          timestamp: now - 5 * 60,
+          content: '<span>tags will be removed</span>'
+        }],
+        clickTrashButtonHandler: async (_: string) => {},
+        recoveryRecordHandler: async (_: string) => {}
+      }
+      render(<Histories {...props} />)
+
+      expect(screen.getByText('5分前')).toBeInTheDocument()
+    })
+
+    it('1日前', () => {
+      const now = 1234567890
+      vi.setSystemTime(dayjs.unix(now).toDate())
+      const props = {
+        histories: [{
+          scope: 'thread.root',
+          url: 'https://example.com/1',
+          title: 'Example Title',
+          iconUrl: 'https://example.com/icon',
+          timestamp: now - 60 * 60 * 24,
+          content: '<span>tags will be removed</span>'
+        }],
+        clickTrashButtonHandler: async (_: string) => {},
+        recoveryRecordHandler: async (_: string) => {}
+      }
+      render(<Histories {...props} />)
+
+      expect(screen.getByText('1日前')).toBeInTheDocument()
+    })
   })
 })
