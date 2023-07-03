@@ -141,15 +141,15 @@ describe('src/popup/component/Histories.tsx', () => {
     })
 
     it('数秒前', () => {
-      const now = 1234567890
-      vi.setSystemTime(dayjs.unix(now).toDate())
+      const nowMilliSec = 1234567890000
+      vi.setSystemTime(dayjs(nowMilliSec).toDate())
       const props = {
         histories: [{
           scope: 'thread.root',
           url: 'https://example.com/1',
           title: 'Example Title',
           iconUrl: 'https://example.com/icon',
-          timestamp: now - 5,
+          timestamp: nowMilliSec - 5 * 1000,
           content: '<span>tags will be removed</span>'
         }],
         clickTrashButtonHandler: async (_: string) => {},
@@ -162,14 +162,14 @@ describe('src/popup/component/Histories.tsx', () => {
 
     it('5分前', () => {
       const now = 1234567890
-      vi.setSystemTime(dayjs.unix(now).toDate())
+      vi.setSystemTime(dayjs(now).toDate())
       const props = {
         histories: [{
           scope: 'thread.root',
           url: 'https://example.com/1',
           title: 'Example Title',
           iconUrl: 'https://example.com/icon',
-          timestamp: now - 5 * 60,
+          timestamp: now - 5 * 60 * 1000,
           content: '<span>tags will be removed</span>'
         }],
         clickTrashButtonHandler: async (_: string) => {},
@@ -181,15 +181,15 @@ describe('src/popup/component/Histories.tsx', () => {
     })
 
     it('1日前', () => {
-      const now = 1234567890
-      vi.setSystemTime(dayjs.unix(now).toDate())
+      const now = 1234567890000
+      vi.setSystemTime(dayjs(now).toDate())
       const props = {
         histories: [{
           scope: 'thread.root',
           url: 'https://example.com/1',
           title: 'Example Title',
           iconUrl: 'https://example.com/icon',
-          timestamp: now - 60 * 60 * 24,
+          timestamp: now - 60 * 60 * 24 * 1000,
           content: '<span>tags will be removed</span>'
         }],
         clickTrashButtonHandler: async (_: string) => {},
