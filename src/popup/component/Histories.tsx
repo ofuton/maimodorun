@@ -193,5 +193,5 @@ const RecordCardTag: React.FC<RecordCardTagProps> = ({ scope }) => {
 }
 
 const fromNow = (timestamp: number): string => {
-  return dayjs.unix(timestamp).fromNow()
+  return dayjs(timestamp).fromNow()
 }
