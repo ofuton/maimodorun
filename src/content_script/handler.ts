@@ -1,7 +1,7 @@
 import { debounce } from 'debounce'
 import { getRecord, hasKey, storeRecord } from '../background/client.ts'
 import { bindEventListener } from './bind.ts'
-import { getURL } from '../extension.ts'
+import { getI18nMessage, getURL } from '../extension.ts'
 
 const editorFieldClassName = 'ocean-ui-editor-field'
 
@@ -121,11 +121,12 @@ const renderRecoveryButton = async (key: string, element: HTMLElement, forceRend
     // 既存のツールバーの右端にボーダーを追加する
     const toolBarButtons = [...toolBarElement.getElementsByClassName('goog-toolbar-button')]
     toolBarButtons[toolBarButtons.length - 1].classList.add('goog-toolbar-button-right-border')
+    const recoveryButtonTitle: string = getI18nMessage('recoveryButtonTitle')
 
     toolBarElement.insertAdjacentHTML(
       'beforeend',
             `
-            <div id="maimodorun-recovery-button" class="goog-inline-block goog-toolbar-button ocean-ui-editor-toolbar-maimodorun" title="保存内容を復元する" role="button">
+            <div id="maimodorun-recovery-button" class="goog-inline-block goog-toolbar-button ocean-ui-editor-toolbar-maimodorun" title="${recoveryButtonTitle}" role="button">
                 <div class="goog-inline-block goog-toolbar-button-inner-box goog-toolbar-button-inner-box-maimodorun">
                   <div class="ocean-ui-editor-toolbar-maimodorun-button">
                       <img class="maimodorun-button-img" src="${getURL('/assets/icon48.png')}" />
@@ -157,11 +158,13 @@ const renderAutoSaveSign = (element: HTMLElement): void => {
     return
   }
 
+  const autoSavedSignMessage: string = getI18nMessage('AutoSaveSign')
+
   element.querySelector('.ocean-ui-comments-commentform-submit')?.insertAdjacentHTML(
     'afterend',
         `
         <div id="maimodorun-auto-save-sign" class="maimodorun-saved-sign">
-            <span>保存しました</span>
+            <span>${autoSavedSignMessage}</span>
         </div>
         `
   )

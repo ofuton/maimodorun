@@ -1,0 +1,14 @@
+{
+  "Name": {
+    "message": "Maimodorun"
+  },
+  "Description": {
+    "message": "maimodorun: Save and recovery tool for text on kintone"
+  },
+  "RecoveryButtonTitle": {
+    "message": "Restore saved text"
+  },
+  "AutoSaveSign": {
+    "message": "Saved!"
+  }
+}

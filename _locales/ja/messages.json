@@ -1,0 +1,14 @@
+{
+  "Name": {
+    "message": "まいもどるん"
+  },
+  "Description": {
+    "message": "kintoneで入力したテキストを自動で保存し、復元できる拡張機能です。"
+  },
+  "RecoveryButtonTitle": {
+    "message": "保存内容を復元する"
+  },
+  "AutoSaveSign": {
+    "message": "保存しました"
+  }
+}

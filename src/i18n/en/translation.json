@@ -1,0 +1,22 @@
+{
+  "RecordNotFoundAlert": "This record has been deleted.",
+  "Timeline": "Timeline",
+  "ActivityCount_one": "{{count}} activity",
+  "ActivityCount_other": "{{count}} activities",
+  "AriaLabelForListOfHistory": "List of history",
+  "AriaLabelForEmptyHistoryImage": "An image indicating that no activity exists",
+  "ActivityDoesNotExist": "You have no activity yet!",
+  "WhyDoNotYouPostComment": "Why don't you write something in kintone?",
+  "RecordCardTitleForComment": "You wrote the body text in \"{{location}}\".",
+  "RecordCardTitleForReply": "You wrote a reply with \"{{location}}\".",
+  "RecordCardTitleForReplyInPeople": "You wrote a reply with \"{{location}}\".",
+  "RecordCardTitleForCommentInMessage": "You wrote a message in \"{{location}}\".",
+  "RecordCardTitleForCommentInApp": "You wrote a comment in \"{{location}}\".",
+  "ThreadBodyTag": "Thread / Body",
+  "ThreadReplyTag": "Thread / Reply",
+  "PeopleBodyTag": "People / Body",
+  "PeopleReplyTag": "People / Reply",
+  "MessageBodyTag": "Message / Body",
+  "AppCommentTag": "App / Comment",
+  "UnknownTag": "Unknown"
+}
