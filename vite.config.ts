@@ -7,7 +7,7 @@ import zipPack from 'vite-plugin-zip-pack'
 
 const manifest = defineManifest({
   manifest_version: 3,
-  version: '2.1.0',
+  version: '2.1.1',
   name: '__MSG_Name__',
   description: '__MSG_Description__',
   default_locale: 'en',
