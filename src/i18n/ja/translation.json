@@ -1,0 +1,21 @@
+{
+  "RecordNotFoundAlert": "このレコードは削除されています",
+  "Timeline": "タイムライン",
+  "ActivityCount": "{{count}}個のアクティビティ",
+  "AriaLabelForListOfHistory": "履歴の一覧",
+  "AriaLabelForEmptyHistoryImage": "アクティビティが存在しないことを表す画像",
+  "ActivityDoesNotExist": "まだアクティビティが存在しません！",
+  "WhyDoNotYouPostComment": "kintoneで何か書き込んでみてはいかがでしょうか？",
+  "RecordCardTitleForComment": "{{location}}で本文を書きました",
+  "RecordCardTitleForReply": "{{location}}で返信を書きました",
+  "RecordCardTitleForReplyInPeople": "{{location}}で投稿しました",
+  "RecordCardTitleForCommentInMessage": "{{location}}で送信しました",
+  "RecordCardTitleForCommentInApp": "{{location}}でコメントしました",
+  "ThreadBodyTag": "スレッド / 本文",
+  "ThreadReplyTag": "スレッド / 返信",
+  "PeopleBodyTag": "ピープル / 本文",
+  "PeopleReplyTag": "ピープル / 返信",
+  "MessageBodyTag": "メッセージ / 本文",
+  "AppCommentTag": "アプリ / コメント",
+  "UnknownTag": "不明"
+}

@@ -23,3 +23,7 @@ export const addListenerForOnUpdated = (callback: (tabId: number, changeInfo: ch
 export const removeListenerForOnUpdated = (callback: (tabId: number, changeInfo: chrome.tabs.TabChangeInfo) => void): void => {
   chrome.tabs.onUpdated.removeListener(callback)
 }
+
+// chrome.i18n.getMessage (_locale) は content_script でのみ利用している
+// i18next は popup で利用している
+export const getI18nMessage = (messageName: string, substitutions?: string[]): string => chrome.i18n.getMessage(messageName, substitutions)

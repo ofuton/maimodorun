@@ -1,4 +1,4 @@
-import { afterEach, describe, expect, it, vi } from 'vitest'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { readFileSync } from 'fs'
 import { openEditorHandler, type Record } from '../../src/content_script/handler.ts'
 import * as client from '../../src/background/client.ts'
@@ -10,6 +10,11 @@ const loadFormHTML = (fileName: string): void => {
 }
 
 describe('src/content_script/handler.ts', () => {
+  beforeEach(() => {
+    const getI18nMessageSpy = vi.spyOn(chrome, 'getI18nMessage')
+    getI18nMessageSpy.mockImplementation((messageName: string) => messageName)
+  })
+
   afterEach(() => {
     vi.clearAllMocks()
   })

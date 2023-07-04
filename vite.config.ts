@@ -7,9 +7,10 @@ import zipPack from 'vite-plugin-zip-pack'
 
 const manifest = defineManifest({
   manifest_version: 3,
-  name: 'Maimodorun',
-  version: '2.0.2',
-  description: 'maimodorun: Recovery Tool for Forms on kintone',
+  version: '2.1.0',
+  name: '__MSG_Name__',
+  description: '__MSG_Description__',
+  default_locale: 'en',
   icons: {
     16: 'assets/icon16.png',
     48: 'assets/icon48.png',

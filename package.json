@@ -1,7 +1,7 @@
 {
   "name": "maimodorun",
   "private": true,
-  "version": "2.0.2",
+  "version": "2.1.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -17,8 +17,11 @@
     "@types/debounce": "^1.2.1",
     "dayjs": "^1.11.8",
     "debounce": "^1.2.1",
+    "i18next": "^23.2.6",
+    "i18next-browser-languagedetector": "^7.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-i18next": "^13.0.1",
     "vite-plugin-svgr": "^3.0.0"
   },
   "devDependencies": {
